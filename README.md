@@ -1,6 +1,6 @@
 > [!NOTE]
 > Read-only mirror of [`templates/composed-server`](https://github.com/Miragon/miragon-ai/tree/main/templates/composed-server)
-> in [Miragon/miragon-ai](https://github.com/Miragon/miragon-ai), synced on every release (currently v0.4.0).
+> in [Miragon/miragon-ai](https://github.com/Miragon/miragon-ai), synced on every release (currently v0.5.0).
 > Please open issues and pull requests there.
 
 # Composed MCP server template
@@ -18,8 +18,9 @@ needed.
 
 ```bash
 pnpm install
-pnpm build          # builds the module, the widget bundle, and the server
-pnpm dev            # MCP endpoint on :8400, inspector on :8400/inspector
+cp .env.example .env  # engine + Prometheus URLs; `pnpm dev` loads it
+pnpm build            # builds the module, the widget bundle, and the server
+pnpm dev              # MCP endpoint on :8400, inspector on :8400/inspector
 ```
 
 Point the inspector (or any MCP host) at `http://localhost:8400/mcp` and call
@@ -109,6 +110,13 @@ by name across ALL composed modules, including yours.
   build error.
 
 ## Configuration
+
+[`.env.example`](.env.example) documents every variable this server reads, with
+defaults; copy it to `.env`, which `pnpm dev` loads via `dotenv-cli`. It is not
+read by `pnpm start` or the Docker image — those take their config from the
+environment. A variable the server does not read prints an "Unknown environment
+variable" warning at boot, so keep `.env.example` in sync when you add a module
+(guarded by `server/test/env-example.test.ts`).
 
 | Variable                                     | Effect                                                           |
 | -------------------------------------------- | ---------------------------------------------------------------- |
