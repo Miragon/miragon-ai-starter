@@ -15,18 +15,18 @@ importers:
   modules/mcp-notes:
     dependencies:
       '@miragon-ai/widget-shell':
-        specifier: 0.5.0
-        version: 0.5.0(e759ab4ce49b040b13bf46975ed18fd0)
+        specifier: 0.5.1
+        version: 0.5.1(bec01f7991bca5effa22beb848b3b5ed)
       '@miragon/mcp-toolkit-core':
         specifier: 0.10.1
-        version: 0.10.1(@modelcontextprotocol/sdk@1.29.0(zod@4.4.3))(mcp-use@1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.2.0(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))(zod@4.4.3))(zod@4.4.3)
+        version: 0.10.1(@modelcontextprotocol/sdk@1.29.0(zod@4.4.3))(mcp-use@1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11))(zod@4.4.3))(zod@4.4.3)
       zod:
         specifier: 4.4.3
         version: 4.4.3
     devDependencies:
       '@miragon/mcp-toolkit-ui':
         specifier: 0.10.1
-        version: 0.10.1(04875cf6fa7a30c88518aa4dd40bbe7d)
+        version: 0.10.1(7c91825b40b5a8931658e63ed5d15884)
       '@types/node':
         specifier: 22.19.15
         version: 22.19.15
@@ -35,7 +35,7 @@ importers:
         version: 19.2.17
       mcp-use:
         specifier: 1.34.5
-        version: 1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.2.0(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))(zod@4.4.3)
+        version: 1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11))(zod@4.4.3)
       react:
         specifier: 19.2.8
         version: 19.2.8
@@ -44,7 +44,7 @@ importers:
         version: 5.9.3
       vitest:
         specifier: 4.1.4
-        version: 4.1.4(@opentelemetry/api@1.9.1)(@types/node@22.19.15)(vite@8.2.0(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))
+        version: 4.1.4(@opentelemetry/api@1.9.1)(@types/node@22.19.15)(vite@8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11))
 
   server:
     dependencies:
@@ -52,20 +52,20 @@ importers:
         specifier: workspace:*
         version: link:../modules/mcp-notes
       '@miragon-ai/mcp-analytics':
-        specifier: 0.5.0
-        version: 0.5.0(@miragon/mcp-toolkit-ui@0.10.1(2713d71a64188fbd55bbf3fd6bc185df))(@modelcontextprotocol/sdk@1.29.0(zod@4.4.3))(@tanstack/react-query@5.101.4(react@19.2.8))(bpmn-js@18.14.0)(mcp-use@1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.0.8(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))(zod@4.4.3))(react@19.2.8)
+        specifier: 0.5.1
+        version: 0.5.1(@miragon/mcp-toolkit-ui@0.10.1(7c91825b40b5a8931658e63ed5d15884))(@modelcontextprotocol/sdk@1.29.0(zod@4.4.3))(@tanstack/react-query@5.101.4(react@19.2.8))(bpmn-js@18.22.1)(mcp-use@1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11))(zod@4.4.3))(react@19.2.8)
       '@miragon-ai/mcp-camunda7':
-        specifier: 0.5.0
-        version: 0.5.0(@miragon/mcp-toolkit-ui@0.10.1(2713d71a64188fbd55bbf3fd6bc185df))(@modelcontextprotocol/sdk@1.29.0(zod@4.4.3))(@tanstack/react-query@5.101.4(react@19.2.8))(bpmn-js@18.14.0)(mcp-use@1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.0.8(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))(zod@4.4.3))(react@19.2.8)
+        specifier: 0.5.1
+        version: 0.5.1(@miragon/mcp-toolkit-ui@0.10.1(7c91825b40b5a8931658e63ed5d15884))(@modelcontextprotocol/sdk@1.29.0(zod@4.4.3))(@tanstack/react-query@5.101.4(react@19.2.8))(bpmn-js@18.22.1)(mcp-use@1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11))(zod@4.4.3))(react@19.2.8)
       '@miragon-ai/widget-shell':
-        specifier: 0.5.0
-        version: 0.5.0(94abf3e3619d1dd369ece47a04d767ec)
+        specifier: 0.5.1
+        version: 0.5.1(bec01f7991bca5effa22beb848b3b5ed)
       '@miragon/mcp-toolkit-core':
         specifier: 0.10.1
-        version: 0.10.1(@modelcontextprotocol/sdk@1.29.0(zod@4.4.3))(mcp-use@1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.0.8(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))(zod@4.4.3))(zod@4.4.3)
+        version: 0.10.1(@modelcontextprotocol/sdk@1.29.0(zod@4.4.3))(mcp-use@1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11))(zod@4.4.3))(zod@4.4.3)
       mcp-use:
         specifier: 1.34.5
-        version: 1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.0.8(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))(zod@4.4.3)
+        version: 1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11))(zod@4.4.3)
       zod:
         specifier: 4.4.3
         version: 4.4.3
@@ -75,10 +75,10 @@ importers:
         version: 5.3.0
       '@miragon/mcp-toolkit-ui':
         specifier: 0.10.1
-        version: 0.10.1(2713d71a64188fbd55bbf3fd6bc185df)
+        version: 0.10.1(7c91825b40b5a8931658e63ed5d15884)
       '@tailwindcss/vite':
         specifier: 4.3.3
-        version: 4.3.3(vite@8.0.8(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))
+        version: 4.3.3(vite@8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11))
       '@types/node':
         specifier: 22.19.15
         version: 22.19.15
@@ -90,7 +90,7 @@ importers:
         version: 19.2.3(@types/react@19.2.17)
       '@vitejs/plugin-react':
         specifier: 6.0.1
-        version: 6.0.1(vite@8.0.8(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))
+        version: 6.0.1(vite@8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11))
       class-variance-authority:
         specifier: 0.7.1
         version: 0.7.1
@@ -113,14 +113,14 @@ importers:
         specifier: 5.9.3
         version: 5.9.3
       vite:
-        specifier: 8.0.8
-        version: 8.0.8(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7)
+        specifier: 8.0.16
+        version: 8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11)
       vite-plugin-singlefile:
         specifier: 2.3.2
-        version: 2.3.2(rollup@4.62.4)(vite@8.0.8(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))
+        version: 2.3.2(rollup@4.62.4)(vite@8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11))
       vitest:
         specifier: 4.1.4
-        version: 4.1.4(@opentelemetry/api@1.9.1)(@types/node@22.19.15)(vite@8.0.8(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))
+        version: 4.1.4(@opentelemetry/api@1.9.1)(@types/node@22.19.15)(vite@8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11))
 
 packages:
 
@@ -158,11 +158,11 @@ packages:
   '@bpmn-io/diagram-js-ui@0.2.4':
     resolution: {integrity: sha512-I678ZGtoH7z7FgzFhzzppM9ThsJ3Lh83kW3GjhjG3xyYciIPYHMaHK1MABP8F69H9pFZpViM6t4qUo8dwrVz0w==}
 
-  '@emnapi/core@1.9.2':
-    resolution: {integrity: sha512-UC+ZhH3XtczQYfOlu3lNEkdW/p4dsJ1r/bP7H8+rhao3TTTMO1ATq/4DdIi23XuGoFY+Cz0JmCbdVl0hz9jZcA==}
+  '@emnapi/core@1.10.0':
+    resolution: {integrity: sha512-yq6OkJ4p82CAfPl0u9mQebQHKPJkY7WrIuk205cTYnYe+k2Z8YBh11FrbRG/H6ihirqcacOgl2BIO8oyMQLeXw==}
 
-  '@emnapi/runtime@1.9.2':
-    resolution: {integrity: sha512-3U4+MIWHImeyu1wnmVygh5WlgfYDtyf0k8AbLhMFxOipihf6nrWC4syIm/SwEeec0mNSafiiNnMJwbza/Is6Lw==}
+  '@emnapi/runtime@1.10.0':
+    resolution: {integrity: sha512-ewvYlk86xUoGI0zQRNq/mC+16R1QeDlKQy21Ki3oSYXNgLb45GV1P6A0M+/s6nyCuNDqe5VpaY84BzXGwVbwFA==}
 
   '@emnapi/wasi-threads@1.2.1':
     resolution: {integrity: sha512-uTII7OYF+/Mes/MrcIOYp5yOtSMLBWSIoLPpcgwipoiKbli6k322tcoFsxoIIxPDqW01SQGAgko4EzZi2BNv2w==}
@@ -402,26 +402,16 @@ packages:
       express:
         optional: true
 
-  '@miragon-ai/client-analytics@0.5.0':
-    resolution: {integrity: sha512-WyZNahLRQwD/ASzahku1EKhFU5BtcONZGbiso+OP6vX+7aX5iCBk/dPq4eBueM3N1TxP1J3/bf/RBl35SKT6Mg==}
+  '@miragon-ai/client-analytics@0.5.1':
+    resolution: {integrity: sha512-iIfSnHwY6tXsIhjwUwZlZXTWuF2JL+1qvhjck2rSn6qLuI8VnS6ZIg44PptCmUfu9nO6Wyyabk4YHabIGTcPtQ==}
     engines: {node: '>=22'}
 
-  '@miragon-ai/client-camunda7@0.5.0':
-    resolution: {integrity: sha512-x3ohG6rA4TVdqLBmIjFdZDg4Yr9SFVBeWj0VBAkbShx7oDd0AcXVhl32vHQQo1MKmXhpdRqsTw+h1VjFRBXhMQ==}
+  '@miragon-ai/client-camunda7@0.5.1':
+    resolution: {integrity: sha512-yP2+05tMh5IUHU7fj10Ix1Pi21qIS+rwDEpDqpQqVo//brQrVN4BoZKfsm5D/bn0V8LQBe+rroYa0Xy18fcDQQ==}
     engines: {node: '>=22'}
 
-  '@miragon-ai/mcp-analytics@0.5.0':
-    resolution: {integrity: sha512-Gm0H0W9snX6bV389gnntR8jUJ1IGQjS6Y7UMlFNfF84QJsbGBJfnCPLFW5TY5U6rxEspSMH/3PMLgJKzAvME1w==}
-    engines: {node: '>=22'}
-    peerDependencies:
-      mcp-use: 1.34.5
-      react: 19.2.8
-    peerDependenciesMeta:
-      react:
-        optional: true
-
-  '@miragon-ai/mcp-camunda7@0.5.0':
-    resolution: {integrity: sha512-RoxGcihI5369Nj8VydnovcgppAk5mWdMESEhrGrYnjFCEXDqNHZhWJW+QpjQStdUsJzUEutxTEw6d8Gq5BhNsQ==}
+  '@miragon-ai/mcp-analytics@0.5.1':
+    resolution: {integrity: sha512-mw/Qj06cuwx3TAWWz3d0H5v3xbKC9dHWuuvqlRLbQ8XBdFEg9NsV0uu6JsfvnT8VnoNcwDOOttXHgFENpjORPg==}
     engines: {node: '>=22'}
     peerDependencies:
       mcp-use: 1.34.5
@@ -430,14 +420,24 @@ packages:
       react:
         optional: true
 
-  '@miragon-ai/widget-shell@0.5.0':
-    resolution: {integrity: sha512-VsARZG1AB+sHTU8l8eSCOrf99s6NG6ickyxquX5OM6oNXnElkiGfdnPDi52AV9cosBD20hLOHpeCVhSgNfaDiw==}
+  '@miragon-ai/mcp-camunda7@0.5.1':
+    resolution: {integrity: sha512-cxttYkiw7gA4iAmAWrA0tVx9WQ07nMrTVPaa0P1u1HTzhrMVRbXKHs6RsVLprGh++675cOndJo5XatoAXnUuIg==}
+    engines: {node: '>=22'}
+    peerDependencies:
+      mcp-use: 1.34.5
+      react: 19.2.8
+    peerDependenciesMeta:
+      react:
+        optional: true
+
+  '@miragon-ai/widget-shell@0.5.1':
+    resolution: {integrity: sha512-C+sX2frrh34ktnabmm8qWyMo95rvmQPpYoRQTZrf6VjL09jt6UMAV4Zw0lg1OIgVWlheXUYxFf4js32FNuDSxw==}
     engines: {node: '>=22'}
     peerDependencies:
       '@miragon/mcp-toolkit-core': 0.10.1
       '@miragon/mcp-toolkit-ui': 0.10.1
       '@tanstack/react-query': 5.101.4
-      bpmn-js: 18.14.0
+      bpmn-js: 18.22.1
       mcp-use: 1.34.5
       react: 19.2.8
     peerDependenciesMeta:
@@ -651,11 +651,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@oxc-project/types@0.124.0':
-    resolution: {integrity: sha512-VBFWMTBvHxS11Z5Lvlr3IWgrwhMTXV+Md+EQF0Xf60+wAdsGFTBx7X7K/hP4pi8N7dcm1RvcHwDxZ16Qx8keUg==}
-
-  '@oxc-project/types@0.143.0':
-    resolution: {integrity: sha512-u6JZdLBTLotrNC9Vd6vPssINdzcCzleKAH6EJKImQb7GtYvX5keN2dxkoK44stCc4tffE6QQRtZTXVSzsLUlWA==}
+  '@oxc-project/types@0.133.0':
+    resolution: {integrity: sha512-KzkdCd6Uxqnf6l3HOw1xfatAlUURA0g14cvBYFyJ5SaNOQbOUvBr9PKArcPcrNIeRsBdgcUzOGrhKveVpvOIGA==}
 
   '@paper-design/shaders-react@0.0.72':
     resolution: {integrity: sha512-q6KwquL93ZVNcuSM7pqzW0z/VLjnDVb/NSpYyGJBxf7MEHHCXx37E+zw/Px6RZLt3SGCUerIDDCGCMT385oW0w==}
@@ -1420,193 +1417,100 @@ packages:
     peerDependencies:
       '@redis/client': ^5.10.0
 
-  '@rolldown/binding-android-arm64@1.0.0-rc.15':
-    resolution: {integrity: sha512-YYe6aWruPZDtHNpwu7+qAHEMbQ/yRl6atqb/AhznLTnD3UY99Q1jE7ihLSahNWkF4EqRPVC4SiR4O0UkLK02tA==}
+  '@rolldown/binding-android-arm64@1.0.3':
+    resolution: {integrity: sha512-454rs7jHngixp/NMxd5srYD57OnzSlZ/eFTETjORQHLwJG1lRtmNOJcBerZlfu4GjKqeq8aCCIQrMdHyhI51Hw==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [arm64]
     os: [android]
 
-  '@rolldown/binding-android-arm64@1.2.3':
-    resolution: {integrity: sha512-zrJtHDcaZJ1Fp7xf4hNl+7seH9Cn/N5TwLYkhgXREtBwAd/jaqW3uqeHxpDugJLVICWg4eW44kOQEGJ1r6jCGw==}
-    engines: {node: ^20.19.0 || >=22.12.0}
-    cpu: [arm64]
-    os: [android]
-
-  '@rolldown/binding-darwin-arm64@1.0.0-rc.15':
-    resolution: {integrity: sha512-oArR/ig8wNTPYsXL+Mzhs0oxhxfuHRfG7Ikw7jXsw8mYOtk71W0OkF2VEVh699pdmzjPQsTjlD1JIOoHkLP1Fg==}
+  '@rolldown/binding-darwin-arm64@1.0.3':
+    resolution: {integrity: sha512-PcAhP+ynjURNyy8SKGl5DQP94aGuB/7JrXJb/t7P+hanXvQVMWzUvRRhBAcg/lNRadBhoUPqSoP4xw5tR/KBEA==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [arm64]
     os: [darwin]
 
-  '@rolldown/binding-darwin-arm64@1.2.3':
-    resolution: {integrity: sha512-ieIiibVCp0tX7TLu2cafoNPv8wJyYi01ekXpbf8q2j7F4rGAhhXb/eQh7ge9DRBY78GwmRQtvjZDux7EDbA8kA==}
-    engines: {node: ^20.19.0 || >=22.12.0}
-    cpu: [arm64]
-    os: [darwin]
-
-  '@rolldown/binding-darwin-x64@1.0.0-rc.15':
-    resolution: {integrity: sha512-YzeVqOqjPYvUbJSWJ4EDL8ahbmsIXQpgL3JVipmN+MX0XnXMeWomLN3Fb+nwCmP/jfyqte5I3XRSm7OfQrbyxw==}
+  '@rolldown/binding-darwin-x64@1.0.3':
+    resolution: {integrity: sha512-9YpfeUvSE2RS7wysJ81uOZkXJz7f7Q55H2Gvp3VEw/EsahqDtrphrZ0EwDLK5vvKOzaCrBsjF8JmnMLcUt78Gg==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [x64]
     os: [darwin]
 
-  '@rolldown/binding-darwin-x64@1.2.3':
-    resolution: {integrity: sha512-Zh9tCon19eDXJoihx0rqKhMUlMYqzwj3aPsSuHmI4RWZh62dWUL+DJN4C5YQya5TcQBJU/Fe8+rY0jhXTQITqA==}
-    engines: {node: ^20.19.0 || >=22.12.0}
-    cpu: [x64]
-    os: [darwin]
-
-  '@rolldown/binding-freebsd-x64@1.0.0-rc.15':
-    resolution: {integrity: sha512-9Erhx956jeQ0nNTyif1+QWAXDRD38ZNjr//bSHrt6wDwB+QkAfl2q6Mn1k6OBPerznjRmbM10lgRb1Pli4xZPw==}
+  '@rolldown/binding-freebsd-x64@1.0.3':
+    resolution: {integrity: sha512-yB1IlAsSNHncV6SCTL27/MVGR5htvQsoGxIv5KMGXALp+Ll1wYsn+x98M9MW7qa+NdSbvrrY7ANI4wLJ0n1e6g==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [x64]
     os: [freebsd]
 
-  '@rolldown/binding-freebsd-x64@1.2.3':
-    resolution: {integrity: sha512-nGbJWewA1wrXXZiQhjAT5rhibGfns5ZNkDVqxsO6zJ3f3YvpoDNNmGMSbbhLuXKjNScaBJVOAboztAWVespQMg==}
-    engines: {node: ^20.19.0 || >=22.12.0}
-    cpu: [x64]
-    os: [freebsd]
-
-  '@rolldown/binding-linux-arm-gnueabihf@1.0.0-rc.15':
-    resolution: {integrity: sha512-cVwk0w8QbZJGTnP/AHQBs5yNwmpgGYStL88t4UIaqcvYJWBfS0s3oqVLZPwsPU6M0zlW4GqjP0Zq5MnAGwFeGA==}
+  '@rolldown/binding-linux-arm-gnueabihf@1.0.3':
+    resolution: {integrity: sha512-Yi30IVAAfLUCy2MseFjbB1jAMDl1VMCAas5StnYp8da9+CKvMd2H2cbEjWcw5NPaPqzvYkVIaF1nNUG+b7u/sw==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [arm]
     os: [linux]
 
-  '@rolldown/binding-linux-arm-gnueabihf@1.2.3':
-    resolution: {integrity: sha512-QNniJr5Kml0kDEB98jiDOJjXNroxIIi0IXIbdYzY26Xt1pVbeP62+KnoIZLwirOymX/0jDk/2gI/bNUv7A7OIw==}
-    engines: {node: ^20.19.0 || >=22.12.0}
-    cpu: [arm]
-    os: [linux]
-
-  '@rolldown/binding-linux-arm64-gnu@1.0.0-rc.15':
-    resolution: {integrity: sha512-eBZ/u8iAK9SoHGanqe/jrPnY0JvBN6iXbVOsbO38mbz+ZJsaobExAm1Iu+rxa4S1l2FjG0qEZn4Rc6X8n+9M+w==}
+  '@rolldown/binding-linux-arm64-gnu@1.0.3':
+    resolution: {integrity: sha512-jsO7R8To+AdlYgUmN5sHSCZbfhtMBkO0WUx8iORQnPcMMdgr7qM2DQmMwgabs3GhNztdmoKkMKQFHD6DTMCIQw==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [arm64]
     os: [linux]
     libc: [glibc]
 
-  '@rolldown/binding-linux-arm64-gnu@1.2.3':
-    resolution: {integrity: sha512-TkqEAcmmvH3I/q4114NB4RVt6241Dao48pF45uLcFGrwAaIn0iITgTAKP/dLjbN0R4buJjGb91+UHSoFmpgIWw==}
-    engines: {node: ^20.19.0 || >=22.12.0}
-    cpu: [arm64]
-    os: [linux]
-    libc: [glibc]
-
-  '@rolldown/binding-linux-arm64-musl@1.0.0-rc.15':
-    resolution: {integrity: sha512-ZvRYMGrAklV9PEkgt4LQM6MjQX2P58HPAuecwYObY2DhS2t35R0I810bKi0wmaYORt6m/2Sm+Z+nFgb0WhXNcQ==}
+  '@rolldown/binding-linux-arm64-musl@1.0.3':
+    resolution: {integrity: sha512-VWkUHwWriDciit80wleYwKILoR/KMvxh/IdwS/paX+ZgpuRpCrKLUdadJbc0NpBEiyhpYawsJ73j9aCvOH+f7Q==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [arm64]
     os: [linux]
     libc: [musl]
 
-  '@rolldown/binding-linux-arm64-musl@1.2.3':
-    resolution: {integrity: sha512-NHqjnxpsndf4MPymxteFAWHHfkTL8HjWh1KB7z23ofZ6QO2euONuxDXjat69dKZRALnGypg8k8SsK8vZJoXv1Q==}
-    engines: {node: ^20.19.0 || >=22.12.0}
-    cpu: [arm64]
-    os: [linux]
-    libc: [musl]
-
-  '@rolldown/binding-linux-ppc64-gnu@1.0.0-rc.15':
-    resolution: {integrity: sha512-VDpgGBzgfg5hLg+uBpCLoFG5kVvEyafmfxGUV0UHLcL5irxAK7PKNeC2MwClgk6ZAiNhmo9FLhRYgvMmedLtnQ==}
+  '@rolldown/binding-linux-ppc64-gnu@1.0.3':
+    resolution: {integrity: sha512-5f1laC0SlIR0yDbFCd8acUhvJIag6N3zC5P7oUPN6wX0aOma+uKJ0wBDH5aq7I1PVI2ttTlhJwzwRIBnLiSGEg==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [ppc64]
     os: [linux]
     libc: [glibc]
 
-  '@rolldown/binding-linux-ppc64-gnu@1.2.3':
-    resolution: {integrity: sha512-6tbrbwfz5GB9DQ4Jwo6hy9v+vR31xZlvzZ6n5Xut6Hhx5PvrA9q/HsK8KMaYQp063iqZGXwNvZtYNLD7EM/x0w==}
-    engines: {node: ^20.19.0 || >=22.12.0}
-    cpu: [ppc64]
-    os: [linux]
-    libc: [glibc]
-
-  '@rolldown/binding-linux-s390x-gnu@1.0.0-rc.15':
-    resolution: {integrity: sha512-y1uXY3qQWCzcPgRJATPSOUP4tCemh4uBdY7e3EZbVwCJTY3gLJWnQABgeUetvED+bt1FQ01OeZwvhLS2bpNrAQ==}
+  '@rolldown/binding-linux-s390x-gnu@1.0.3':
+    resolution: {integrity: sha512-Iq4ko0r4XsgbrF/LunNgHtAGLRRVE2kXonAXQ/MV0mC6jQpMOhW1SvtZja2EhC/kd05++bP78dsqBeIQyYJ6Yg==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [s390x]
     os: [linux]
     libc: [glibc]
 
-  '@rolldown/binding-linux-s390x-gnu@1.2.3':
-    resolution: {integrity: sha512-oyuXxXmoZHjXC917IAPFAAv4wWAa0cM9afk8nx1+9/jNNOX1uPf8yDA6p7G0RypOfw/X0PQt5IfoquY1um+zSg==}
-    engines: {node: ^20.19.0 || >=22.12.0}
-    cpu: [s390x]
-    os: [linux]
-    libc: [glibc]
-
-  '@rolldown/binding-linux-x64-gnu@1.0.0-rc.15':
-    resolution: {integrity: sha512-023bTPBod7J3Y/4fzAN6QtpkSABR0rigtrwaP+qSEabUh5zf6ELr9Nc7GujaROuPY3uwdSIXWrvhn1KxOvurWA==}
+  '@rolldown/binding-linux-x64-gnu@1.0.3':
+    resolution: {integrity: sha512-B8m6tD5+/N5FeNQFbKlLA/2yVq9ycQP1SeedyEYYKWBNR3ZQbkvIUcNnDNM03lO1l5F2roiiFJGgvoLLyZXtSg==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [x64]
     os: [linux]
     libc: [glibc]
 
-  '@rolldown/binding-linux-x64-gnu@1.2.3':
-    resolution: {integrity: sha512-TytMwF2KVGqP2tgd0I1OY0PAv78dZRAYcF5ssDzjM34SUXCED3uXvSd5+lHoC0bTD6eEdFz7LdQNCO1y0oVk9w==}
-    engines: {node: ^20.19.0 || >=22.12.0}
-    cpu: [x64]
-    os: [linux]
-    libc: [glibc]
-
-  '@rolldown/binding-linux-x64-musl@1.0.0-rc.15':
-    resolution: {integrity: sha512-witB2O0/hU4CgfOOKUoeFgQ4GktPi1eEbAhaLAIpgD6+ZnhcPkUtPsoKKHRzmOoWPZue46IThdSgdo4XneOLYw==}
+  '@rolldown/binding-linux-x64-musl@1.0.3':
+    resolution: {integrity: sha512-pSdpdUJHkuCxun9LE7jvgUB9qsRgaiyNNCX7m/AvHTcq67AiT/Yhoxvw5zPfhrM8k/BfP8ce/hMOpthKDpEUow==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [x64]
     os: [linux]
     libc: [musl]
 
-  '@rolldown/binding-linux-x64-musl@1.2.3':
-    resolution: {integrity: sha512-/E9m3qstrJFVPoULV25mVQblSNExY2+kBsYe4sy0Tn0yOOgJ8wZbZt3KnRbF/XeU2Gl1STKUQnDNTqhIE5MD4A==}
-    engines: {node: ^20.19.0 || >=22.12.0}
-    cpu: [x64]
-    os: [linux]
-    libc: [musl]
-
-  '@rolldown/binding-openharmony-arm64@1.0.0-rc.15':
-    resolution: {integrity: sha512-UCL68NJ0Ud5zRipXZE9dF5PmirzJE4E4BCIOOssEnM7wLDsxjc6Qb0sGDxTNRTP53I6MZpygyCpY8Aa8sPfKPg==}
+  '@rolldown/binding-openharmony-arm64@1.0.3':
+    resolution: {integrity: sha512-OXXS3RKJgX2uLwM+gYyuH5omcH8fL1LJs96pZGgtetVCahON57+d4SJHzTgZiOjxgGkSnpXpOsWuPDGAKAigEg==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [arm64]
     os: [openharmony]
 
-  '@rolldown/binding-openharmony-arm64@1.2.3':
-    resolution: {integrity: sha512-Kr0OcsoQI816i6HOl3vFHpd1K0eZyh76zgfj4c1nTyaTsd5r2Mj1lwM4R90y/qaCfmTn9eHy0SKwi98eitRxug==}
+  '@rolldown/binding-wasm32-wasi@1.0.3':
+    resolution: {integrity: sha512-JTtb8BWFynicNSoPrehsCzBtOKjZ6jhMiPFEmOiuXg1Fl8dn2KHQob+GuPSGR0dryQa1PQJbzjF3dqO/whhjLg==}
     engines: {node: ^20.19.0 || >=22.12.0}
-    cpu: [arm64]
-    os: [openharmony]
-
-  '@rolldown/binding-wasm32-wasi@1.0.0-rc.15':
-    resolution: {integrity: sha512-ApLruZq/ig+nhaE7OJm4lDjayUnOHVUa77zGeqnqZ9pn0ovdVbbNPerVibLXDmWeUZXjIYIT8V3xkT58Rm9u5Q==}
-    engines: {node: '>=14.0.0'}
     cpu: [wasm32]
 
-  '@rolldown/binding-win32-arm64-msvc@1.0.0-rc.15':
-    resolution: {integrity: sha512-KmoUoU7HnN+Si5YWJigfTws1jz1bKBYDQKdbLspz0UaqjjFkddHsqorgiW1mxcAj88lYUE6NC/zJNwT+SloqtA==}
+  '@rolldown/binding-win32-arm64-msvc@1.0.3':
+    resolution: {integrity: sha512-gEdFFEN70A/jxb2svrWsN3aDL7OUtmvlOy+6fa2jxG8K0wQ1ZbdeLGnidov6Yu5/733dI5ySfzFlQ/cb0bSz1g==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [arm64]
     os: [win32]
 
-  '@rolldown/binding-win32-arm64-msvc@1.2.3':
-    resolution: {integrity: sha512-hOtMwTqnME+/gJcH/PCZ0wn0zPUjiWOgkHpxbSJpfGKMezHltx1S7/k1SitzVa7Ww2cqrDDaFbZEhcJZO8o+Jw==}
-    engines: {node: ^20.19.0 || >=22.12.0}
-    cpu: [arm64]
-    os: [win32]
-
-  '@rolldown/binding-win32-x64-msvc@1.0.0-rc.15':
-    resolution: {integrity: sha512-3P2A8L+x75qavWLe/Dll3EYBJLQmtkJN8rfh+U/eR3MqMgL/h98PhYI+JFfXuDPgPeCB7iZAKiqii5vqOvnA0g==}
+  '@rolldown/binding-win32-x64-msvc@1.0.3':
+    resolution: {integrity: sha512-eXB7CHuaQdqmJcc3koCNtNPmT/bj2gc999kUFgBxG8Ac0NdgXc4rkCHhqrgrhN3zddvvvrgzj1e90SuSfmyIXA==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [x64]
     os: [win32]
-
-  '@rolldown/binding-win32-x64-msvc@1.2.3':
-    resolution: {integrity: sha512-ekcqMMkI2PlhYnfzQnB/cEdYUVVJViWvoUyLrbzgDoi3Snfc1mVBwdnc306ufA5ejy8JSPjT2RlW1nQSjW7efg==}
-    engines: {node: ^20.19.0 || >=22.12.0}
-    cpu: [x64]
-    os: [win32]
-
-  '@rolldown/pluginutils@1.0.0-rc.15':
-    resolution: {integrity: sha512-UromN0peaE53IaBRe9W7CjrZgXl90fqGpK+mIZbA3qSTeYqg3pqpROBdIPvOG3F5ereDHNwoHBI2e50n1BDr1g==}
 
   '@rolldown/pluginutils@1.0.0-rc.7':
     resolution: {integrity: sha512-qujRfC8sFVInYSPPMLQByRh7zhwkGFS4+tyMQ83srV1qrxL4g8E2tyxVVyxd0+8QeBM1mIk9KbWxkegRr76XzA==}
@@ -1985,8 +1889,8 @@ packages:
     resolution: {integrity: sha512-2cGmJupaNgg+QUwVLAucDuWuoMZ6EX9iHDRswZ5lsNYEmwPaRknMPCLZz07yTzVq/83p4o/wzbDZbBrTvGGTIw==}
     engines: {node: '>=18'}
 
-  bpmn-js@18.14.0:
-    resolution: {integrity: sha512-z4CjyvK2wtP+IIunQJpZK1g5Xkfa089rueB2MCY2+NeZFz2RaHn17qJcXOvOhXvLHbUo+ldiXnkFuiGqslxIbQ==}
+  bpmn-js@18.22.1:
+    resolution: {integrity: sha512-rO2WTTHGtnCejd4QwzIAXhy0cdSWzM1tU+SSd0WQCpmO5Xq/YsEpNKU+oOD+piboEi0P98RZbQ98JrjyKb+NZg==}
 
   bpmn-moddle@10.1.0:
     resolution: {integrity: sha512-k9Vl97hiFwlr4bJTQ5+pZp21bmrQwil5jnMQ30wF8vney2/WnIcJmWwYzRTAKFVoViTGowtDfbO5rGEF4viO0w==}
@@ -2396,8 +2300,8 @@ packages:
     resolution: {integrity: sha512-2NFaIyNVgJmBs/ecmtGzlmluTFs5cHEWGTdu0t1HBwYzoGXOL5nUQBRMXsXWla5i4KkG//QMzVP88m1+I3fdAQ==}
     engines: {node: '>=16.9.0'}
 
-  hono@4.13.0:
-    resolution: {integrity: sha512-jhunvfHWxd7J5EFfSgH4xsYJzSe/lfqbUCxiyyeaQasUsXeEHXtzVid+7EOGByc5JnFa23SSFL3Y2RV/z1T+eQ==}
+  hono@4.13.1:
+    resolution: {integrity: sha512-kdJoFVv2xmayw6cY09H7AbMJMt8Jn5jdlEdXsP7AGBdF2DIptVlKlOLKXP41yPip4/a3yQPv9gVcJYI8YY04dw==}
     engines: {node: '>=16.9.0'}
 
   htm@3.1.1:
@@ -2910,8 +2814,8 @@ packages:
     resolution: {integrity: sha512-wQ0b/W4Fr01qtpHlqSqspcj3EhBvimsdh0KlHhH8HRZnMsEa0ea2fTULOXOS9ccQr3om+GcGRk4e+isrZWV8qQ==}
     engines: {node: '>=16.20.0'}
 
-  postcss@8.5.25:
-    resolution: {integrity: sha512-DTPx3RWSSnWyzLxQnlH0rJP+EW5ekl16ZU4/psbIhA0e53kJfdgaN5vKM+xP7yJtXVu+nfdVFmlgFDEKAe4Pyw==}
+  postcss@8.5.26:
+    resolution: {integrity: sha512-u82N74LFzG8ca+dD8puPnplTXoGH4fTPpVGuIbt36G3qvNlkvfD0lEAZSxaly3KX8TS/L1A1gsCEmvKmBcVbkQ==}
     engines: {node: ^10 || ^12 || >=14}
 
   posthog-js@1.351.3:
@@ -3044,8 +2948,8 @@ packages:
     resolution: {integrity: sha512-PWaYA1L/q9u2u7xYQi+Y3L3Yfnie7XyLeaJICV1MGD6LprsBxcAqGjYyr0eY3p+QdsA+x/Irkt4Qif8D63+Sbw==}
     engines: {node: '>=0.10.0'}
 
-  readdirp@5.0.0:
-    resolution: {integrity: sha512-9u/XQ1pvrQtYyMpZe7DXKv2p5CNvyVwzUB6uhLAnQwHMSgKMBR62lc7AHljaeteeHXn11XTAaLLUVZYVZyuRBQ==}
+  readdirp@5.1.1:
+    resolution: {integrity: sha512-Kko+Y5XQ6fM+Ce3dq3m9YGxnacYZYl9cA1wZjaF3Vbry2L3i1qVg8+CAgNPsXRArPMUMCaOR7oa9Nqntc43JKA==}
     engines: {node: '>= 20.19.0'}
 
   redis@5.10.0:
@@ -3066,13 +2970,8 @@ packages:
   reselect@5.2.0:
     resolution: {integrity: sha512-AgZ3UOZm3YndfrJ4OYjgrT7bmCm/1iqkjvEfH/oYjzh6PD2qw4QuT3jjnXIrpdt4MTpMXclMT3lXbmRY+XRakw==}
 
-  rolldown@1.0.0-rc.15:
-    resolution: {integrity: sha512-Ff31guA5zT6WjnGp0SXw76X6hzGRk/OQq2hE+1lcDe+lJdHSgnSX6nK3erbONHyCbpSj9a9E+uX/OvytZoWp2g==}
-    engines: {node: ^20.19.0 || >=22.12.0}
-    hasBin: true
-
-  rolldown@1.2.3:
-    resolution: {integrity: sha512-rn9wpmxplLf7NLNyCk9FyWh3FM43DbY8jOzCdEPzH7uflhTftRbCEpqi6Ly2osgoU8OwObtmavMbWLaWy4LX7A==}
+  rolldown@1.0.3:
+    resolution: {integrity: sha512-i00lAJ2ks1BYr7rjNjKC7BcqAS7nVfiT3QX1SI5aY+AFHblCmaUf9OE9dbdzDvW6dJxbi2ZCZiy9v3CcwOiX3g==}
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
 
@@ -3229,8 +3128,8 @@ packages:
   tslib@2.8.1:
     resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
 
-  tsx@4.23.7:
-    resolution: {integrity: sha512-3f/u/+UDCNQ7iwUZW9FCMnNGIHzElGJYh0S/yy8IvWSsn5O7fEO/897FaG7FA2W8yryiRyuwXZ1PYLAKYaqSuQ==}
+  tsx@4.23.11:
+    resolution: {integrity: sha512-Ry2oTEUnhBdeEdWIztY8kf3/nBGnPnjMLVGL0YfdRXMORuPER5NlKmayqxtxRxwB1xBN+RivRaJfe7PM1rtiyw==}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
@@ -3293,56 +3192,13 @@ packages:
       rollup: ^4.59.0
       vite: ^5.4.11 || ^6.0.0 || ^7.0.0 || ^8.0.0
 
-  vite@8.0.8:
-    resolution: {integrity: sha512-dbU7/iLVa8KZALJyLOBOQ88nOXtNG8vxKuOT4I2mD+Ya70KPceF4IAmDsmU0h1Qsn5bPrvsY9HJstCRh3hG6Uw==}
+  vite@8.0.16:
+    resolution: {integrity: sha512-h9bXPmJichP5fLmVQo3PyaGSDE2n3aPuomeAlVRm0JLmt4rY6zmPKd59HYI4LNW8oTK7tlTsuC7l/m7awx9Jcw==}
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
     peerDependencies:
       '@types/node': ^20.19.0 || >=22.12.0
-      '@vitejs/devtools': ^0.1.0
-      esbuild: ^0.27.0 || ^0.28.0
-      jiti: '>=1.21.0'
-      less: ^4.0.0
-      sass: ^1.70.0
-      sass-embedded: ^1.70.0
-      stylus: '>=0.54.8'
-      sugarss: ^5.0.0
-      terser: ^5.16.0
-      tsx: ^4.8.1
-      yaml: ^2.4.2
-    peerDependenciesMeta:
-      '@types/node':
-        optional: true
-      '@vitejs/devtools':
-        optional: true
-      esbuild:
-        optional: true
-      jiti:
-        optional: true
-      less:
-        optional: true
-      sass:
-        optional: true
-      sass-embedded:
-        optional: true
-      stylus:
-        optional: true
-      sugarss:
-        optional: true
-      terser:
-        optional: true
-      tsx:
-        optional: true
-      yaml:
-        optional: true
-
-  vite@8.2.0:
-    resolution: {integrity: sha512-pn+CFpM0lwDeKwmOq1ZaBK/9sjorZcgqxki6MbY/jPEVd9vichIlmlD4HmQ5wdP5EgqQCFRaACBxMC7uEGc6lQ==}
-    engines: {node: ^20.19.0 || >=22.12.0}
-    hasBin: true
-    peerDependencies:
-      '@types/node': ^20.19.0 || >=22.12.0
-      '@vitejs/devtools': ^0.4.0
+      '@vitejs/devtools': ^0.1.18
       esbuild: ^0.27.0 || ^0.28.0
       jiti: '>=1.21.0'
       less: ^4.0.0
@@ -3440,8 +3296,8 @@ packages:
   wrappy@1.0.2:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
 
-  ws@8.21.2:
-    resolution: {integrity: sha512-54dMVAo4WIe6SKy3vBgN+9bJZqqQ8IMRevAkOLQALhi49qkkQDQfWdAZ8KQlXiEabw88ARXXdUrlvtbKQX+aKw==}
+  ws@8.21.3:
+    resolution: {integrity: sha512-201TZ/kPWxoPr/OKWjquZR1SWKXcvxdH+e1xrx89b3YbmzLMFCLfnaG1HFIgWzJOEWZ7MvpK++odZufgYR50Rw==}
     engines: {node: '>=10.0.0'}
     peerDependencies:
       bufferutil: ^4.0.1
@@ -3517,13 +3373,13 @@ snapshots:
     transitivePeerDependencies:
       - preact-render-to-string
 
-  '@emnapi/core@1.9.2':
+  '@emnapi/core@1.10.0':
     dependencies:
       '@emnapi/wasi-threads': 1.2.1
       tslib: 2.8.1
     optional: true
 
-  '@emnapi/runtime@1.9.2':
+  '@emnapi/runtime@1.10.0':
     dependencies:
       tslib: 2.8.1
     optional: true
@@ -3636,9 +3492,9 @@ snapshots:
     dependencies:
       hono: 4.12.25
 
-  '@hono/node-server@1.19.17(hono@4.13.0)':
+  '@hono/node-server@1.19.17(hono@4.13.1)':
     dependencies:
-      hono: 4.13.0
+      hono: 4.13.1
 
   '@isaacs/fs-minipass@4.0.1':
     dependencies:
@@ -3685,50 +3541,41 @@ snapshots:
       - supports-color
       - zod
 
-  '@mcp-use/cli@3.6.6(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(express@5.2.1)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)':
+  '@mcp-use/cli@3.6.6(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(express@5.2.1)(jiti@2.7.0)(mcp-use@1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11))(zod@4.4.3))(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)':
     dependencies:
-      '@mcp-use/inspector': 12.0.5(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(express@5.2.1)(mcp-use@1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.2.0(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))(zod@4.4.3))(react-dom@19.2.8(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(vite@8.2.0(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))
-      '@tailwindcss/vite': 4.3.3(vite@8.2.0(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))
-      '@vitejs/plugin-react': 6.0.1(vite@8.2.0(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))
+      '@mcp-use/inspector': 12.0.5(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(express@5.2.1)(mcp-use@1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11))(zod@4.4.3))(react-dom@19.2.8(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(vite@8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11))
+      '@tailwindcss/vite': 4.3.3(vite@8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11))
+      '@vitejs/plugin-react': 6.0.1(vite@8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11))
       chalk: 5.6.2
       chokidar: 5.0.0
       commander: 14.0.3
       dotenv: 17.4.2
       esbuild: 0.28.1
-      mcp-use: 1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.2.0(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))(zod@4.3.5)
+      mcp-use: 1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11))(zod@4.3.5)
       open: 11.0.0
       react: 19.2.8
       react-dom: 19.2.8(react@19.2.8)
       react-router-dom: 7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       tar: 7.5.22
-      tsx: 4.23.7
-      vite: 8.2.0(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7)
-      vite-plugin-singlefile: 2.3.2(rollup@4.62.4)(vite@8.2.0(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))
-      ws: 8.21.2
+      tsx: 4.23.11
+      vite: 8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11)
+      vite-plugin-singlefile: 2.3.2(rollup@4.62.4)(vite@8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11))
+      ws: 8.21.3
       zod: 4.3.5
     transitivePeerDependencies:
       - '@cfworker/json-schema'
-      - '@e2b/code-interpreter'
       - '@emotion/is-prop-valid'
-      - '@langchain/anthropic'
-      - '@langchain/core'
-      - '@langchain/openai'
       - '@rolldown/plugin-babel'
-      - '@types/express'
       - '@types/node'
       - '@types/react'
       - '@types/react-dom'
       - '@vitejs/devtools'
-      - ai
       - babel-plugin-react-compiler
       - bufferutil
       - express
       - jiti
-      - langchain
-      - langfuse
-      - langfuse-langchain
       - less
-      - preact-render-to-string
+      - mcp-use
       - react-native
       - react-router
       - rollup
@@ -3743,7 +3590,7 @@ snapshots:
       - vue
       - yaml
 
-  '@mcp-use/inspector@12.0.5(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(express@5.2.1)(mcp-use@1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.0.8(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))(zod@4.4.3))(react-dom@19.2.8(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(vite@8.0.8(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))':
+  '@mcp-use/inspector@12.0.5(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(express@5.2.1)(mcp-use@1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11))(zod@4.4.3))(react-dom@19.2.8(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(vite@8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11))':
     dependencies:
       '@hono/node-server': 1.19.13(hono@4.12.25)
       '@modelcontextprotocol/ext-apps': 1.0.1(@modelcontextprotocol/sdk@1.26.0(zod@4.4.3))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(zod@4.3.5)
@@ -3760,7 +3607,7 @@ snapshots:
       '@radix-ui/react-switch': 1.3.7(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@radix-ui/react-tooltip': 1.2.16(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@scarf/scarf': 1.4.0
-      '@tailwindcss/vite': 4.3.3(vite@8.0.8(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))
+      '@tailwindcss/vite': 4.3.3(vite@8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11))
       '@types/react-syntax-highlighter': 15.5.13
       class-variance-authority: 0.7.1
       clsx: 2.1.1
@@ -3768,7 +3615,7 @@ snapshots:
       hono: 4.12.25
       lucide-react: 0.562.0(react@19.2.8)
       markdown-to-jsx: 9.10.2(react@19.2.8)
-      mcp-use: 1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.0.8(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))(zod@4.4.3)
+      mcp-use: 1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11))(zod@4.4.3)
       motion: 12.43.0(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       next-themes: 0.4.6(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       open: 11.0.0
@@ -3794,71 +3641,20 @@ snapshots:
       - vite
       - vue
 
-  '@mcp-use/inspector@12.0.5(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(express@5.2.1)(mcp-use@1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.2.0(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))(zod@4.4.3))(react-dom@19.2.8(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(vite@8.2.0(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))':
-    dependencies:
-      '@hono/node-server': 1.19.13(hono@4.12.25)
-      '@modelcontextprotocol/ext-apps': 1.0.1(@modelcontextprotocol/sdk@1.26.0(zod@4.4.3))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(zod@4.3.5)
-      '@modelcontextprotocol/sdk': 1.26.0(zod@4.3.5)
-      '@paper-design/shaders-react': 0.0.72(@types/react@19.2.17)(react@19.2.8)
-      '@radix-ui/react-alert-dialog': 1.1.23(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      '@radix-ui/react-avatar': 1.2.6(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      '@radix-ui/react-checkbox': 1.3.11(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      '@radix-ui/react-dialog': 1.1.23(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      '@radix-ui/react-dropdown-menu': 2.1.24(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      '@radix-ui/react-label': 2.1.15(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      '@radix-ui/react-popover': 1.1.23(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      '@radix-ui/react-select': 2.3.7(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      '@radix-ui/react-switch': 1.3.7(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      '@radix-ui/react-tooltip': 1.2.16(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      '@scarf/scarf': 1.4.0
-      '@tailwindcss/vite': 4.3.3(vite@8.2.0(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))
-      '@types/react-syntax-highlighter': 15.5.13
-      class-variance-authority: 0.7.1
-      clsx: 2.1.1
-      cmdk: 1.1.1(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      hono: 4.12.25
-      lucide-react: 0.562.0(react@19.2.8)
-      markdown-to-jsx: 9.10.2(react@19.2.8)
-      mcp-use: 1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.2.0(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))(zod@4.4.3)
-      motion: 12.43.0(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      next-themes: 0.4.6(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      open: 11.0.0
-      posthog-node: 5.24.17
-      react: 19.2.8
-      react-dom: 19.2.8(react@19.2.8)
-      react-resizable-panels: 4.12.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      react-router: 7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      react-syntax-highlighter: 16.1.1(react@19.2.8)
-      sonner: 2.0.7(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      tailwind-merge: 3.6.0
-      zod: 4.3.5
-    optionalDependencies:
-      express: 5.2.1
-    transitivePeerDependencies:
-      - '@cfworker/json-schema'
-      - '@emotion/is-prop-valid'
-      - '@types/react'
-      - '@types/react-dom'
-      - react-native
-      - solid-js
-      - supports-color
-      - vite
-      - vue
-
-  '@miragon-ai/client-analytics@0.5.0':
+  '@miragon-ai/client-analytics@0.5.1':
     dependencies:
       zod: 4.4.3
 
-  '@miragon-ai/client-camunda7@0.5.0':
+  '@miragon-ai/client-camunda7@0.5.1':
     dependencies:
       zod: 4.4.3
 
-  '@miragon-ai/mcp-analytics@0.5.0(@miragon/mcp-toolkit-ui@0.10.1(2713d71a64188fbd55bbf3fd6bc185df))(@modelcontextprotocol/sdk@1.29.0(zod@4.4.3))(@tanstack/react-query@5.101.4(react@19.2.8))(bpmn-js@18.14.0)(mcp-use@1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.0.8(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))(zod@4.4.3))(react@19.2.8)':
+  '@miragon-ai/mcp-analytics@0.5.1(@miragon/mcp-toolkit-ui@0.10.1(7c91825b40b5a8931658e63ed5d15884))(@modelcontextprotocol/sdk@1.29.0(zod@4.4.3))(@tanstack/react-query@5.101.4(react@19.2.8))(bpmn-js@18.22.1)(mcp-use@1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11))(zod@4.4.3))(react@19.2.8)':
     dependencies:
-      '@miragon-ai/client-analytics': 0.5.0
-      '@miragon-ai/widget-shell': 0.5.0(94abf3e3619d1dd369ece47a04d767ec)
-      '@miragon/mcp-toolkit-core': 0.10.1(@modelcontextprotocol/sdk@1.29.0(zod@4.4.3))(mcp-use@1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.0.8(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))(zod@4.4.3))(zod@4.4.3)
-      mcp-use: 1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.0.8(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))(zod@4.4.3)
+      '@miragon-ai/client-analytics': 0.5.1
+      '@miragon-ai/widget-shell': 0.5.1(bec01f7991bca5effa22beb848b3b5ed)
+      '@miragon/mcp-toolkit-core': 0.10.1(@modelcontextprotocol/sdk@1.29.0(zod@4.4.3))(mcp-use@1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11))(zod@4.4.3))(zod@4.4.3)
+      mcp-use: 1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11))(zod@4.4.3)
       zod: 4.4.3
     optionalDependencies:
       react: 19.2.8
@@ -3868,12 +3664,12 @@ snapshots:
       - '@tanstack/react-query'
       - bpmn-js
 
-  '@miragon-ai/mcp-camunda7@0.5.0(@miragon/mcp-toolkit-ui@0.10.1(2713d71a64188fbd55bbf3fd6bc185df))(@modelcontextprotocol/sdk@1.29.0(zod@4.4.3))(@tanstack/react-query@5.101.4(react@19.2.8))(bpmn-js@18.14.0)(mcp-use@1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.0.8(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))(zod@4.4.3))(react@19.2.8)':
+  '@miragon-ai/mcp-camunda7@0.5.1(@miragon/mcp-toolkit-ui@0.10.1(7c91825b40b5a8931658e63ed5d15884))(@modelcontextprotocol/sdk@1.29.0(zod@4.4.3))(@tanstack/react-query@5.101.4(react@19.2.8))(bpmn-js@18.22.1)(mcp-use@1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11))(zod@4.4.3))(react@19.2.8)':
     dependencies:
-      '@miragon-ai/client-camunda7': 0.5.0
-      '@miragon-ai/widget-shell': 0.5.0(94abf3e3619d1dd369ece47a04d767ec)
-      '@miragon/mcp-toolkit-core': 0.10.1(@modelcontextprotocol/sdk@1.29.0(zod@4.4.3))(mcp-use@1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.0.8(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))(zod@4.4.3))(zod@4.4.3)
-      mcp-use: 1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.0.8(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))(zod@4.4.3)
+      '@miragon-ai/client-camunda7': 0.5.1
+      '@miragon-ai/widget-shell': 0.5.1(bec01f7991bca5effa22beb848b3b5ed)
+      '@miragon/mcp-toolkit-core': 0.10.1(@modelcontextprotocol/sdk@1.29.0(zod@4.4.3))(mcp-use@1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11))(zod@4.4.3))(zod@4.4.3)
+      mcp-use: 1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11))(zod@4.4.3)
       zod: 4.4.3
     optionalDependencies:
       react: 19.2.8
@@ -3883,76 +3679,35 @@ snapshots:
       - '@tanstack/react-query'
       - bpmn-js
 
-  '@miragon-ai/widget-shell@0.5.0(94abf3e3619d1dd369ece47a04d767ec)':
+  '@miragon-ai/widget-shell@0.5.1(bec01f7991bca5effa22beb848b3b5ed)':
     dependencies:
-      '@miragon/mcp-toolkit-core': 0.10.1(@modelcontextprotocol/sdk@1.29.0(zod@4.4.3))(mcp-use@1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.0.8(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))(zod@4.4.3))(zod@4.4.3)
-      bpmn-js: 18.14.0
+      '@miragon/mcp-toolkit-core': 0.10.1(@modelcontextprotocol/sdk@1.29.0(zod@4.4.3))(mcp-use@1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11))(zod@4.4.3))(zod@4.4.3)
+      bpmn-js: 18.22.1
       clsx: 2.1.1
-      mcp-use: 1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.0.8(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))(zod@4.4.3)
+      mcp-use: 1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11))(zod@4.4.3)
       tailwind-merge: 3.6.0
       zod: 4.4.3
     optionalDependencies:
-      '@miragon/mcp-toolkit-ui': 0.10.1(2713d71a64188fbd55bbf3fd6bc185df)
+      '@miragon/mcp-toolkit-ui': 0.10.1(7c91825b40b5a8931658e63ed5d15884)
       '@tanstack/react-query': 5.101.4(react@19.2.8)
       react: 19.2.8
 
-  '@miragon-ai/widget-shell@0.5.0(e759ab4ce49b040b13bf46975ed18fd0)':
-    dependencies:
-      '@miragon/mcp-toolkit-core': 0.10.1(@modelcontextprotocol/sdk@1.29.0(zod@4.4.3))(mcp-use@1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.2.0(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))(zod@4.4.3))(zod@4.4.3)
-      bpmn-js: 18.14.0
-      clsx: 2.1.1
-      mcp-use: 1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.2.0(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))(zod@4.4.3)
-      tailwind-merge: 3.6.0
-      zod: 4.4.3
-    optionalDependencies:
-      '@miragon/mcp-toolkit-ui': 0.10.1(04875cf6fa7a30c88518aa4dd40bbe7d)
-      '@tanstack/react-query': 5.101.4(react@19.2.8)
-      react: 19.2.8
-
-  '@miragon/mcp-toolkit-core@0.10.1(@modelcontextprotocol/sdk@1.29.0(zod@4.4.3))(mcp-use@1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.0.8(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))(zod@4.4.3))(zod@4.4.3)':
+  '@miragon/mcp-toolkit-core@0.10.1(@modelcontextprotocol/sdk@1.29.0(zod@4.4.3))(mcp-use@1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11))(zod@4.4.3))(zod@4.4.3)':
     dependencies:
       '@modelcontextprotocol/sdk': 1.29.0(zod@4.4.3)
-      mcp-use: 1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.0.8(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))(zod@4.4.3)
+      mcp-use: 1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11))(zod@4.4.3)
       zod: 4.4.3
 
-  '@miragon/mcp-toolkit-core@0.10.1(@modelcontextprotocol/sdk@1.29.0(zod@4.4.3))(mcp-use@1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.2.0(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))(zod@4.4.3))(zod@4.4.3)':
-    dependencies:
-      '@modelcontextprotocol/sdk': 1.29.0(zod@4.4.3)
-      mcp-use: 1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.2.0(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))(zod@4.4.3)
-      zod: 4.4.3
-
-  '@miragon/mcp-toolkit-ui@0.10.1(04875cf6fa7a30c88518aa4dd40bbe7d)':
+  '@miragon/mcp-toolkit-ui@0.10.1(7c91825b40b5a8931658e63ed5d15884)':
     dependencies:
       '@base-ui/react': 1.6.0(@types/react@19.2.17)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@fontsource-variable/geist': 5.3.0
-      '@miragon/mcp-toolkit-core': 0.10.1(@modelcontextprotocol/sdk@1.29.0(zod@4.4.3))(mcp-use@1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.2.0(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))(zod@4.4.3))(zod@4.4.3)
+      '@miragon/mcp-toolkit-core': 0.10.1(@modelcontextprotocol/sdk@1.29.0(zod@4.4.3))(mcp-use@1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11))(zod@4.4.3))(zod@4.4.3)
       '@tanstack/react-query': 5.101.4(react@19.2.8)
       class-variance-authority: 0.7.1
       clsx: 2.1.1
       lucide-react: 1.25.0(react@19.2.8)
-      mcp-use: 1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.2.0(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))(zod@4.4.3)
-      radix-ui: 1.6.7(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      react: 19.2.8
-      react-dom: 19.2.8(react@19.2.8)
-      tailwind-merge: 3.6.0
-      tailwindcss: 4.3.3
-      tw-animate-css: 1.4.0
-    transitivePeerDependencies:
-      - '@date-fns/tz'
-      - '@types/react'
-      - '@types/react-dom'
-      - date-fns
-
-  '@miragon/mcp-toolkit-ui@0.10.1(2713d71a64188fbd55bbf3fd6bc185df)':
-    dependencies:
-      '@base-ui/react': 1.6.0(@types/react@19.2.17)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      '@fontsource-variable/geist': 5.3.0
-      '@miragon/mcp-toolkit-core': 0.10.1(@modelcontextprotocol/sdk@1.29.0(zod@4.4.3))(mcp-use@1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.0.8(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))(zod@4.4.3))(zod@4.4.3)
-      '@tanstack/react-query': 5.101.4(react@19.2.8)
-      class-variance-authority: 0.7.1
-      clsx: 2.1.1
-      lucide-react: 1.25.0(react@19.2.8)
-      mcp-use: 1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.0.8(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))(zod@4.4.3)
+      mcp-use: 1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11))(zod@4.4.3)
       radix-ui: 1.6.7(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       react: 19.2.8
       react-dom: 19.2.8(react@19.2.8)
@@ -4111,7 +3866,7 @@ snapshots:
 
   '@modelcontextprotocol/sdk@1.29.0(zod@4.4.3)':
     dependencies:
-      '@hono/node-server': 1.19.17(hono@4.13.0)
+      '@hono/node-server': 1.19.17(hono@4.13.1)
       ajv: 8.20.0
       ajv-formats: 3.0.1(ajv@8.20.0)
       content-type: 1.0.5
@@ -4121,7 +3876,7 @@ snapshots:
       eventsource-parser: 3.1.0
       express: 5.2.1
       express-rate-limit: 8.6.2(express@5.2.1)
-      hono: 4.13.0
+      hono: 4.13.1
       jose: 6.2.8
       json-schema-typed: 8.0.2
       pkce-challenge: 5.0.1
@@ -4134,10 +3889,10 @@ snapshots:
   '@napi-rs/lzma-linux-x64-gnu@1.5.1':
     optional: true
 
-  '@napi-rs/wasm-runtime@1.2.2(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)':
+  '@napi-rs/wasm-runtime@1.2.2(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)':
     dependencies:
-      '@emnapi/core': 1.9.2
-      '@emnapi/runtime': 1.9.2
+      '@emnapi/core': 1.10.0
+      '@emnapi/runtime': 1.10.0
       '@tybys/wasm-util': 0.10.3
     optional: true
 
@@ -4250,9 +4005,7 @@ snapshots:
   '@oven/bun-windows-x64@1.3.14':
     optional: true
 
-  '@oxc-project/types@0.124.0': {}
-
-  '@oxc-project/types@0.143.0': {}
+  '@oxc-project/types@0.133.0': {}
 
   '@paper-design/shaders-react@0.0.72(@types/react@19.2.17)(react@19.2.8)':
     dependencies:
@@ -5061,98 +4814,54 @@ snapshots:
       '@redis/client': 5.10.0
     optional: true
 
-  '@rolldown/binding-android-arm64@1.0.0-rc.15':
+  '@rolldown/binding-android-arm64@1.0.3':
     optional: true
 
-  '@rolldown/binding-android-arm64@1.2.3':
+  '@rolldown/binding-darwin-arm64@1.0.3':
     optional: true
 
-  '@rolldown/binding-darwin-arm64@1.0.0-rc.15':
+  '@rolldown/binding-darwin-x64@1.0.3':
     optional: true
 
-  '@rolldown/binding-darwin-arm64@1.2.3':
+  '@rolldown/binding-freebsd-x64@1.0.3':
     optional: true
 
-  '@rolldown/binding-darwin-x64@1.0.0-rc.15':
+  '@rolldown/binding-linux-arm-gnueabihf@1.0.3':
     optional: true
 
-  '@rolldown/binding-darwin-x64@1.2.3':
+  '@rolldown/binding-linux-arm64-gnu@1.0.3':
     optional: true
 
-  '@rolldown/binding-freebsd-x64@1.0.0-rc.15':
+  '@rolldown/binding-linux-arm64-musl@1.0.3':
     optional: true
 
-  '@rolldown/binding-freebsd-x64@1.2.3':
+  '@rolldown/binding-linux-ppc64-gnu@1.0.3':
     optional: true
 
-  '@rolldown/binding-linux-arm-gnueabihf@1.0.0-rc.15':
+  '@rolldown/binding-linux-s390x-gnu@1.0.3':
     optional: true
 
-  '@rolldown/binding-linux-arm-gnueabihf@1.2.3':
+  '@rolldown/binding-linux-x64-gnu@1.0.3':
     optional: true
 
-  '@rolldown/binding-linux-arm64-gnu@1.0.0-rc.15':
+  '@rolldown/binding-linux-x64-musl@1.0.3':
     optional: true
 
-  '@rolldown/binding-linux-arm64-gnu@1.2.3':
+  '@rolldown/binding-openharmony-arm64@1.0.3':
     optional: true
 
-  '@rolldown/binding-linux-arm64-musl@1.0.0-rc.15':
-    optional: true
-
-  '@rolldown/binding-linux-arm64-musl@1.2.3':
-    optional: true
-
-  '@rolldown/binding-linux-ppc64-gnu@1.0.0-rc.15':
-    optional: true
-
-  '@rolldown/binding-linux-ppc64-gnu@1.2.3':
-    optional: true
-
-  '@rolldown/binding-linux-s390x-gnu@1.0.0-rc.15':
-    optional: true
-
-  '@rolldown/binding-linux-s390x-gnu@1.2.3':
-    optional: true
-
-  '@rolldown/binding-linux-x64-gnu@1.0.0-rc.15':
-    optional: true
-
-  '@rolldown/binding-linux-x64-gnu@1.2.3':
-    optional: true
-
-  '@rolldown/binding-linux-x64-musl@1.0.0-rc.15':
-    optional: true
-
-  '@rolldown/binding-linux-x64-musl@1.2.3':
-    optional: true
-
-  '@rolldown/binding-openharmony-arm64@1.0.0-rc.15':
-    optional: true
-
-  '@rolldown/binding-openharmony-arm64@1.2.3':
-    optional: true
-
-  '@rolldown/binding-wasm32-wasi@1.0.0-rc.15':
+  '@rolldown/binding-wasm32-wasi@1.0.3':
     dependencies:
-      '@emnapi/core': 1.9.2
-      '@emnapi/runtime': 1.9.2
-      '@napi-rs/wasm-runtime': 1.2.2(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)
+      '@emnapi/core': 1.10.0
+      '@emnapi/runtime': 1.10.0
+      '@napi-rs/wasm-runtime': 1.2.2(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)
     optional: true
 
-  '@rolldown/binding-win32-arm64-msvc@1.0.0-rc.15':
+  '@rolldown/binding-win32-arm64-msvc@1.0.3':
     optional: true
 
-  '@rolldown/binding-win32-arm64-msvc@1.2.3':
+  '@rolldown/binding-win32-x64-msvc@1.0.3':
     optional: true
-
-  '@rolldown/binding-win32-x64-msvc@1.0.0-rc.15':
-    optional: true
-
-  '@rolldown/binding-win32-x64-msvc@1.2.3':
-    optional: true
-
-  '@rolldown/pluginutils@1.0.0-rc.15': {}
 
   '@rolldown/pluginutils@1.0.0-rc.7': {}
 
@@ -5298,19 +5007,12 @@ snapshots:
       '@tailwindcss/oxide-win32-arm64-msvc': 4.3.3
       '@tailwindcss/oxide-win32-x64-msvc': 4.3.3
 
-  '@tailwindcss/vite@4.3.3(vite@8.0.8(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))':
+  '@tailwindcss/vite@4.3.3(vite@8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11))':
     dependencies:
       '@tailwindcss/node': 4.3.3
       '@tailwindcss/oxide': 4.3.3
       tailwindcss: 4.3.3
-      vite: 8.0.8(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7)
-
-  '@tailwindcss/vite@4.3.3(vite@8.2.0(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))':
-    dependencies:
-      '@tailwindcss/node': 4.3.3
-      '@tailwindcss/oxide': 4.3.3
-      tailwindcss: 4.3.3
-      vite: 8.2.0(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7)
+      vite: 8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11)
 
   '@tanstack/query-core@5.101.4': {}
 
@@ -5362,15 +5064,10 @@ snapshots:
 
   '@types/unist@3.0.3': {}
 
-  '@vitejs/plugin-react@6.0.1(vite@8.0.8(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))':
+  '@vitejs/plugin-react@6.0.1(vite@8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11))':
     dependencies:
       '@rolldown/pluginutils': 1.0.0-rc.7
-      vite: 8.0.8(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7)
-
-  '@vitejs/plugin-react@6.0.1(vite@8.2.0(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))':
-    dependencies:
-      '@rolldown/pluginutils': 1.0.0-rc.7
-      vite: 8.2.0(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7)
+      vite: 8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11)
 
   '@vitest/expect@4.1.4':
     dependencies:
@@ -5381,21 +5078,13 @@ snapshots:
       chai: 6.2.2
       tinyrainbow: 3.1.1
 
-  '@vitest/mocker@4.1.4(vite@8.0.8(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))':
+  '@vitest/mocker@4.1.4(vite@8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11))':
     dependencies:
       '@vitest/spy': 4.1.4
       estree-walker: 3.0.3
       magic-string: 0.30.21
     optionalDependencies:
-      vite: 8.0.8(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7)
-
-  '@vitest/mocker@4.1.4(vite@8.2.0(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))':
-    dependencies:
-      '@vitest/spy': 4.1.4
-      estree-walker: 3.0.3
-      magic-string: 0.30.21
-    optionalDependencies:
-      vite: 8.2.0(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7)
+      vite: 8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11)
 
   '@vitest/pretty-format@4.1.4':
     dependencies:
@@ -5472,7 +5161,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  bpmn-js@18.14.0:
+  bpmn-js@18.22.1:
     dependencies:
       bpmn-moddle: 10.1.0
       diagram-js: 15.23.2
@@ -5528,7 +5217,7 @@ snapshots:
 
   chokidar@5.0.0:
     dependencies:
-      readdirp: 5.0.0
+      readdirp: 5.1.1
 
   chownr@3.0.0: {}
 
@@ -5907,7 +5596,7 @@ snapshots:
 
   hono@4.12.25: {}
 
-  hono@4.13.0: {}
+  hono@4.13.1: {}
 
   htm@3.1.1: {}
 
@@ -6098,63 +5787,12 @@ snapshots:
 
   math-intrinsics@1.1.0: {}
 
-  mcp-use@1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.0.8(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))(zod@4.4.3):
-    dependencies:
-      '@hono/node-server': 1.19.13(hono@4.12.25)
-      '@mcp-ui/server': 6.1.0(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(zod@4.4.3)
-      '@mcp-use/cli': 3.6.6(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(express@5.2.1)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)
-      '@mcp-use/inspector': 12.0.5(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(express@5.2.1)(mcp-use@1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.0.8(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))(zod@4.4.3))(react-dom@19.2.8(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(vite@8.0.8(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))
-      '@modelcontextprotocol/ext-apps': 1.0.1(@modelcontextprotocol/sdk@1.26.0(zod@4.4.3))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(zod@4.4.3)
-      '@modelcontextprotocol/sdk': 1.26.0(zod@4.4.3)
-      chalk: 4.1.2
-      express: 5.2.1
-      hono: 4.12.25
-      jose: 6.1.3
-      node-mocks-http: 1.17.2(@types/node@22.19.15)
-      posthog-js: 1.351.3
-      posthog-node: 5.24.17
-      react: 19.2.8
-      react-router: 7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      zod: 4.4.3
-    optionalDependencies:
-      cli-highlight: 2.1.11
-      redis: 5.10.0
-    transitivePeerDependencies:
-      - '@cfworker/json-schema'
-      - '@emotion/is-prop-valid'
-      - '@rolldown/plugin-babel'
-      - '@types/express'
-      - '@types/node'
-      - '@types/react'
-      - '@types/react-dom'
-      - '@vitejs/devtools'
-      - babel-plugin-react-compiler
-      - bufferutil
-      - jiti
-      - less
-      - preact-render-to-string
-      - react-dom
-      - react-native
-      - react-router-dom
-      - rollup
-      - sass
-      - sass-embedded
-      - solid-js
-      - stylus
-      - sugarss
-      - supports-color
-      - terser
-      - utf-8-validate
-      - vite
-      - vue
-      - yaml
-
-  mcp-use@1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.2.0(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))(zod@4.3.5):
+  mcp-use@1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11))(zod@4.3.5):
     dependencies:
       '@hono/node-server': 1.19.13(hono@4.12.25)
       '@mcp-ui/server': 6.1.0(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(zod@4.3.5)
-      '@mcp-use/cli': 3.6.6(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(express@5.2.1)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)
-      '@mcp-use/inspector': 12.0.5(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(express@5.2.1)(mcp-use@1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.2.0(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))(zod@4.4.3))(react-dom@19.2.8(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(vite@8.2.0(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))
+      '@mcp-use/cli': 3.6.6(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(express@5.2.1)(jiti@2.7.0)(mcp-use@1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11))(zod@4.4.3))(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)
+      '@mcp-use/inspector': 12.0.5(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(express@5.2.1)(mcp-use@1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11))(zod@4.4.3))(react-dom@19.2.8(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(vite@8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11))
       '@modelcontextprotocol/ext-apps': 1.0.1(@modelcontextprotocol/sdk@1.26.0(zod@4.4.3))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(zod@4.3.5)
       '@modelcontextprotocol/sdk': 1.26.0(zod@4.3.5)
       chalk: 4.1.2
@@ -6200,12 +5838,12 @@ snapshots:
       - vue
       - yaml
 
-  mcp-use@1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.2.0(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))(zod@4.4.3):
+  mcp-use@1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11))(zod@4.4.3):
     dependencies:
       '@hono/node-server': 1.19.13(hono@4.12.25)
       '@mcp-ui/server': 6.1.0(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(zod@4.4.3)
-      '@mcp-use/cli': 3.6.6(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(express@5.2.1)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)
-      '@mcp-use/inspector': 12.0.5(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(express@5.2.1)(mcp-use@1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.2.0(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))(zod@4.4.3))(react-dom@19.2.8(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(vite@8.2.0(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))
+      '@mcp-use/cli': 3.6.6(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(express@5.2.1)(jiti@2.7.0)(mcp-use@1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11))(zod@4.4.3))(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)
+      '@mcp-use/inspector': 12.0.5(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(express@5.2.1)(mcp-use@1.34.5(@types/node@22.19.15)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(rollup@4.62.4)(vite@8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11))(zod@4.4.3))(react-dom@19.2.8(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(vite@8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11))
       '@modelcontextprotocol/ext-apps': 1.0.1(@modelcontextprotocol/sdk@1.26.0(zod@4.4.3))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(zod@4.4.3)
       '@modelcontextprotocol/sdk': 1.26.0(zod@4.4.3)
       chalk: 4.1.2
@@ -6418,7 +6056,7 @@ snapshots:
 
   pkce-challenge@5.0.1: {}
 
-  postcss@8.5.25:
+  postcss@8.5.26:
     dependencies:
       nanoid: 3.3.17
       picocolors: 1.1.1
@@ -6615,7 +6253,7 @@ snapshots:
 
   react@19.2.8: {}
 
-  readdirp@5.0.0: {}
+  readdirp@5.1.1: {}
 
   redis@5.10.0:
     dependencies:
@@ -6640,46 +6278,26 @@ snapshots:
 
   reselect@5.2.0: {}
 
-  rolldown@1.0.0-rc.15:
+  rolldown@1.0.3:
     dependencies:
-      '@oxc-project/types': 0.124.0
-      '@rolldown/pluginutils': 1.0.0-rc.15
-    optionalDependencies:
-      '@rolldown/binding-android-arm64': 1.0.0-rc.15
-      '@rolldown/binding-darwin-arm64': 1.0.0-rc.15
-      '@rolldown/binding-darwin-x64': 1.0.0-rc.15
-      '@rolldown/binding-freebsd-x64': 1.0.0-rc.15
-      '@rolldown/binding-linux-arm-gnueabihf': 1.0.0-rc.15
-      '@rolldown/binding-linux-arm64-gnu': 1.0.0-rc.15
-      '@rolldown/binding-linux-arm64-musl': 1.0.0-rc.15
-      '@rolldown/binding-linux-ppc64-gnu': 1.0.0-rc.15
-      '@rolldown/binding-linux-s390x-gnu': 1.0.0-rc.15
-      '@rolldown/binding-linux-x64-gnu': 1.0.0-rc.15
-      '@rolldown/binding-linux-x64-musl': 1.0.0-rc.15
-      '@rolldown/binding-openharmony-arm64': 1.0.0-rc.15
-      '@rolldown/binding-wasm32-wasi': 1.0.0-rc.15
-      '@rolldown/binding-win32-arm64-msvc': 1.0.0-rc.15
-      '@rolldown/binding-win32-x64-msvc': 1.0.0-rc.15
-
-  rolldown@1.2.3:
-    dependencies:
-      '@oxc-project/types': 0.143.0
+      '@oxc-project/types': 0.133.0
       '@rolldown/pluginutils': 1.0.1
     optionalDependencies:
-      '@rolldown/binding-android-arm64': 1.2.3
-      '@rolldown/binding-darwin-arm64': 1.2.3
-      '@rolldown/binding-darwin-x64': 1.2.3
-      '@rolldown/binding-freebsd-x64': 1.2.3
-      '@rolldown/binding-linux-arm-gnueabihf': 1.2.3
-      '@rolldown/binding-linux-arm64-gnu': 1.2.3
-      '@rolldown/binding-linux-arm64-musl': 1.2.3
-      '@rolldown/binding-linux-ppc64-gnu': 1.2.3
-      '@rolldown/binding-linux-s390x-gnu': 1.2.3
-      '@rolldown/binding-linux-x64-gnu': 1.2.3
-      '@rolldown/binding-linux-x64-musl': 1.2.3
-      '@rolldown/binding-openharmony-arm64': 1.2.3
-      '@rolldown/binding-win32-arm64-msvc': 1.2.3
-      '@rolldown/binding-win32-x64-msvc': 1.2.3
+      '@rolldown/binding-android-arm64': 1.0.3
+      '@rolldown/binding-darwin-arm64': 1.0.3
+      '@rolldown/binding-darwin-x64': 1.0.3
+      '@rolldown/binding-freebsd-x64': 1.0.3
+      '@rolldown/binding-linux-arm-gnueabihf': 1.0.3
+      '@rolldown/binding-linux-arm64-gnu': 1.0.3
+      '@rolldown/binding-linux-arm64-musl': 1.0.3
+      '@rolldown/binding-linux-ppc64-gnu': 1.0.3
+      '@rolldown/binding-linux-s390x-gnu': 1.0.3
+      '@rolldown/binding-linux-x64-gnu': 1.0.3
+      '@rolldown/binding-linux-x64-musl': 1.0.3
+      '@rolldown/binding-openharmony-arm64': 1.0.3
+      '@rolldown/binding-wasm32-wasi': 1.0.3
+      '@rolldown/binding-win32-arm64-msvc': 1.0.3
+      '@rolldown/binding-win32-x64-msvc': 1.0.3
 
   rollup@4.62.4:
     dependencies:
@@ -6874,7 +6492,7 @@ snapshots:
 
   tslib@2.8.1: {}
 
-  tsx@4.23.7:
+  tsx@4.23.11:
     dependencies:
       esbuild: 0.28.1
     optionalDependencies:
@@ -6920,50 +6538,30 @@ snapshots:
 
   vary@1.1.2: {}
 
-  vite-plugin-singlefile@2.3.2(rollup@4.62.4)(vite@8.0.8(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7)):
+  vite-plugin-singlefile@2.3.2(rollup@4.62.4)(vite@8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11)):
     dependencies:
       micromatch: 4.0.8
       rollup: 4.62.4
-      vite: 8.0.8(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7)
+      vite: 8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11)
 
-  vite-plugin-singlefile@2.3.2(rollup@4.62.4)(vite@8.2.0(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7)):
-    dependencies:
-      micromatch: 4.0.8
-      rollup: 4.62.4
-      vite: 8.2.0(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7)
-
-  vite@8.0.8(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7):
+  vite@8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11):
     dependencies:
       lightningcss: 1.33.0
       picomatch: 4.0.5
-      postcss: 8.5.25
-      rolldown: 1.0.0-rc.15
+      postcss: 8.5.26
+      rolldown: 1.0.3
       tinyglobby: 0.2.17
     optionalDependencies:
       '@types/node': 22.19.15
       esbuild: 0.28.1
       fsevents: 2.3.3
       jiti: 2.7.0
-      tsx: 4.23.7
+      tsx: 4.23.11
 
-  vite@8.2.0(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7):
-    dependencies:
-      lightningcss: 1.33.0
-      picomatch: 4.0.5
-      postcss: 8.5.25
-      rolldown: 1.2.3
-      tinyglobby: 0.2.17
-    optionalDependencies:
-      '@types/node': 22.19.15
-      esbuild: 0.28.1
-      fsevents: 2.3.3
-      jiti: 2.7.0
-      tsx: 4.23.7
-
-  vitest@4.1.4(@opentelemetry/api@1.9.1)(@types/node@22.19.15)(vite@8.0.8(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7)):
+  vitest@4.1.4(@opentelemetry/api@1.9.1)(@types/node@22.19.15)(vite@8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11)):
     dependencies:
       '@vitest/expect': 4.1.4
-      '@vitest/mocker': 4.1.4(vite@8.0.8(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))
+      '@vitest/mocker': 4.1.4(vite@8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11))
       '@vitest/pretty-format': 4.1.4
       '@vitest/runner': 4.1.4
       '@vitest/snapshot': 4.1.4
@@ -6980,35 +6578,7 @@ snapshots:
       tinyexec: 1.3.0
       tinyglobby: 0.2.17
       tinyrainbow: 3.1.1
-      vite: 8.0.8(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7)
-      why-is-node-running: 2.3.0
-    optionalDependencies:
-      '@opentelemetry/api': 1.9.1
-      '@types/node': 22.19.15
-    transitivePeerDependencies:
-      - msw
-
-  vitest@4.1.4(@opentelemetry/api@1.9.1)(@types/node@22.19.15)(vite@8.2.0(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7)):
-    dependencies:
-      '@vitest/expect': 4.1.4
-      '@vitest/mocker': 4.1.4(vite@8.2.0(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7))
-      '@vitest/pretty-format': 4.1.4
-      '@vitest/runner': 4.1.4
-      '@vitest/snapshot': 4.1.4
-      '@vitest/spy': 4.1.4
-      '@vitest/utils': 4.1.4
-      es-module-lexer: 2.3.1
-      expect-type: 1.4.0
-      magic-string: 0.30.21
-      obug: 2.1.4
-      pathe: 2.0.3
-      picomatch: 4.0.5
-      std-env: 4.2.0
-      tinybench: 2.9.0
-      tinyexec: 1.3.0
-      tinyglobby: 0.2.17
-      tinyrainbow: 3.1.1
-      vite: 8.2.0(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.7)
+      vite: 8.0.16(@types/node@22.19.15)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.11)
       why-is-node-running: 2.3.0
     optionalDependencies:
       '@opentelemetry/api': 1.9.1
@@ -7036,7 +6606,7 @@ snapshots:
 
   wrappy@1.0.2: {}
 
-  ws@8.21.2: {}
+  ws@8.21.3: {}
 
   wsl-utils@0.3.1:
     dependencies:
