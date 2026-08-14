@@ -1,6 +1,6 @@
 > [!NOTE]
 > Read-only mirror of [`templates/composed-server`](https://github.com/Miragon/miragon-ai/tree/main/templates/composed-server)
-> in [Miragon/miragon-ai](https://github.com/Miragon/miragon-ai), synced on every release (currently v0.8.0).
+> in [Miragon/miragon-ai](https://github.com/Miragon/miragon-ai), synced on every release (currently v0.9.0).
 > Please open issues and pull requests there.
 
 # Composed MCP server template
@@ -46,6 +46,16 @@ re-run `pnpm install` to refresh `pnpm-lock.yaml` (the Docker build uses
 | `server/test/`                  | Guard tests — keep these; the wire-contract test covers your modules by naming convention, `widget-registry.test.ts` needs your `definition` added |
 | `modules/mcp-notes/`            | Example custom module: tools + widget + catalogue + sync test                                                                                      |
 
+## AI-first: agent instructions and skills
+
+The template ships agent guidance (`CLAUDE.md`) plus step-by-step skills in
+`.claude/skills/` for the four main task paths — `setup-server` (configure,
+brand, deploy), `create-module` (your own connector), `add-widget` (the widget
+path), and `add-settings-section` (per-user settings). Open this repo in
+Claude Code (or any agent that reads `CLAUDE.md`) and describe what you want;
+the skills encode the house patterns and point at the guard tests that keep
+you on them. Everything below works the same when done by hand.
+
 ## Adding your own module
 
 A module is a package that exports a `ModuleDefinition` (see
@@ -78,6 +88,16 @@ Every widget must appear in four places, or it is silently absent somewhere:
 4. the module's `tool-names.ts` constant for every `show_*`/`*_data` tool
    referenced from widget code
 
+### Settings sections
+
+The cockpit's settings page assembles itself from `widgetRegistry`: camunda7's
+profile panel first, then one row per widget id ending in `:settings`, in
+registration order. Give your section widget the id `<module>:settings` and
+spread your module's widget map into `server/src/ui/widget-registry.ts` — your
+section then appears in the settings tab next to the camunda7 and analytics
+ones, with no fork of the camunda7 package. A module that isn't composed
+contributes no id and therefore no section.
+
 ### The three render paths
 
 - **Plain tools** (`src/tools.ts`, via `createToolRegistrar`): JSON for the
@@ -105,9 +125,9 @@ by name across ALL composed modules, including yours.
   `MCP_ACTIVE_MODULES` selects modules at runtime — all widgets stay bundled,
   inactive modules just register no tools.
 - **Exact version pins** (`save-exact` in `.npmrc`). Upgrade all `@miragon-ai/*`
-  packages together to one version; treat every `@miragon/mcp-toolkit-*` minor
-  as potentially breaking (0.x) and keep it at the version the `@miragon-ai`
-  packages pin.
+  packages together to one version; keep `@miragon/mcp-toolkit-*` at the version
+  the `@miragon-ai` packages pin, and `mcp-use` at the version the toolkit peers
+  exactly (toolkit 2.1.0 → `mcp-use@2.2.3`).
 - **Tailwind `@source` entries in `server/src/ui/globals.css`** must cover every
   module's widget sources — a missing entry renders unstyled widgets with no
   build error.
