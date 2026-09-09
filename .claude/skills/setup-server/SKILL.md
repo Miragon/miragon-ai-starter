@@ -46,8 +46,13 @@ Edit `.env` (every field is documented inline in `.env.example`):
   reachable from the user's browser (container hostname), otherwise "open in
   cockpit" links point nowhere.
 - Multiple engines: `CAMUNDA_ENGINES_JSON` (or `CAMUNDA_ENGINES_FILE`) with
-  per-engine `id`, `baseUrl`, optional `flavor` (`cibseven | operaton |
-camunda7`) and `auth` — overrides the single-engine shorthand above.
+  per-engine `id`, `baseUrl`, optional `environment`, `flavor` (`cibseven |
+operaton | camunda7`) and `auth` — overrides the single-engine shorthand
+  above. To group engines by environment, either set `environment` per entry
+  or write the JSON as a map keyed by environment id
+  (`{"<environment>": [engines…]}`) — pickers and `camunda7_engine` `list`
+  then offer a two-stage environment → engine selection. Engine ids stay
+  globally unique across environments.
 - `PROMETHEUS_URL` — unset defaults to `http://localhost:9090`, which does
   **not** match the playground stack (host port 8460); every analytics query
   then fails. The server warns at boot when unset.
@@ -115,7 +120,7 @@ colors live here.
 pnpm install                    # once, then COMMIT pnpm-lock.yaml
 docker build -t my-mcp-server .
 docker run -p 8400:8400 \
-  -e CAMUNDA_BASE_URL=http://host.docker.internal:8080/engine-rest \
+  -e CAMUNDA_BASE_URL=http://host.docker.internal:8410/engine-rest \
   -e MCP_PROFILE_DIR=/data/profiles -v mcp-data:/data \
   my-mcp-server
 ```
@@ -127,7 +132,52 @@ docker run -p 8400:8400 \
   (e.g. agentgateway) IN FRONT of this server — this repo builds one
   self-contained server; don't add upstream/proxy mechanics to it.
 
-## Step 7 — verify
+## Step 7 — connect an assistant
+
+The server speaks streamable HTTP on `/mcp`; how a host gets there differs per
+host.
+
+**Claude Desktop** takes stdio servers ONLY — its `claude_desktop_config.json`
+validates the `command`/`args` shape, and a `"url"` entry is dropped silently
+(older builds crashed at startup instead). Bridge the HTTP endpoint with
+`mcp-remote`, via Settings → Developer → Edit Config
+(macOS `~/Library/Application Support/Claude/claude_desktop_config.json`,
+Windows `%APPDATA%\Claude\claude_desktop_config.json`), then restart the app:
+
+```json
+{
+  "mcpServers": {
+    "my-mcp-server": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "http://127.0.0.1:8400/mcp", "--transport", "http-only"]
+    }
+  }
+}
+```
+
+`127.0.0.1` over `localhost`: Node may resolve the name to IPv6 while the
+server listens on IPv4. Connection problems show up in the host's MCP logs —
+`~/Library/Logs/Claude/mcp*.log` (Windows: `%APPDATA%\Claude\logs`).
+
+**Claude Code** speaks HTTP natively — no bridge:
+
+```bash
+claude mcp add --transport http my-mcp-server http://localhost:8400/mcp
+```
+
+**claude.ai / ChatGPT custom connectors** need a server reachable over the
+public internet (an `https://…/mcp` URL), so a deployment — not localhost. For
+a throwaway test of a local build, `--tunnel` exposes it publicly. Run it
+through dotenv from the repo root — `mcp-use dev` only reads a `.env` next to
+itself (`server/.env`), never this repo's root one, so a bare
+`mcp-use dev --tunnel` in `server/` tunnels a server with no engine or
+Prometheus configured:
+
+```bash
+pnpm exec dotenv -e .env -- pnpm --filter ./server exec mcp-use dev --tunnel --no-open
+```
+
+## Step 8 — verify
 
 ```bash
 pnpm build && pnpm typecheck && pnpm test
@@ -137,16 +187,6 @@ Then a functional pass in the inspector: `camunda7_engine` (engine reachable,
 auth works), one `camunda7_show_*` widget, one analytics tool (Prometheus
 reachable, `engine_id` matches). A clean boot log — no unknown-var or
 missing-URL warnings — is part of done.
-
-To test against a real ChatGPT/Claude host, `--tunnel` exposes the local server
-publicly. Run it through dotenv from the repo root — `mcp-use dev` only reads a
-`.env` next to itself (`server/.env`), never this repo's root one, so a bare
-`mcp-use dev --tunnel` in `server/` tunnels a server with no engine or
-Prometheus configured:
-
-```bash
-pnpm exec dotenv -e .env -- pnpm --filter ./server exec mcp-use dev --tunnel --no-open
-```
 
 ## Troubleshooting
 
@@ -158,3 +198,4 @@ pnpm exec dotenv -e .env -- pnpm --filter ./server exec mcp-use dev --tunnel --n
 | "Unknown environment variable" at boot    | typo, or a var this build doesn't read — `.env.example` is the authoritative list                                                                 |
 | Widget UI changes don't show up           | the bundle is read once at boot — restart `pnpm dev` at the repo root (it rebuilds modules + bundle on start)                                     |
 | A tool is missing                         | module not in `MCP_ACTIVE_MODULES`, or a toolset suffix (`:read-only`) filtered it                                                                |
+| Claude Desktop shows no tools at all      | a `"url"` entry in `claude_desktop_config.json` (stdio only — use the `mcp-remote` bridge from Step 7), or the app wasn't restarted               |
