@@ -15,8 +15,8 @@ importers:
   modules/mcp-notes:
     dependencies:
       '@miragon-ai/widget-shell':
-        specifier: 0.13.0
-        version: 0.13.0(266cef544815ad068aa73de45ca9abaa)
+        specifier: 0.14.0
+        version: 0.14.0(266cef544815ad068aa73de45ca9abaa)
       '@miragon/mcp-toolkit-core':
         specifier: 2.3.0
         version: 2.3.0(mcp-use@2.4.3(@base-ui/react@1.7.0(@types/react@19.2.17)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(@mcp-use/client@2.1.4(@modelcontextprotocol/server@2.0.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(zod@4.5.4))(@types/node@22.19.15)(class-variance-authority@0.7.1)(clsx@2.1.1)(jiti@2.7.0)(lucide-react@0.562.0(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(tailwind-merge@3.6.0)(zod@4.5.4))(zod@4.5.4)
@@ -44,7 +44,7 @@ importers:
         version: 5.9.3
       vitest:
         specifier: 4.1.11
-        version: 4.1.11(@types/node@22.19.15)(vite@8.0.16(@types/node@22.19.15)(jiti@2.7.0))
+        version: 4.1.11(@opentelemetry/api@1.9.1)(@types/node@22.19.15)(vite@8.0.16(@types/node@22.19.15)(jiti@2.7.0))
 
   server:
     dependencies:
@@ -52,14 +52,14 @@ importers:
         specifier: workspace:*
         version: link:../modules/mcp-notes
       '@miragon-ai/analytics-connector':
-        specifier: 0.13.0
-        version: 0.13.0(@miragon/mcp-toolkit-ui@2.3.0(cdc58d0b4ac78a30e10d507e86d80566))(@tanstack/react-query@5.102.8(react@19.2.8))(bpmn-js@18.28.0)(mcp-use@2.4.3(@base-ui/react@1.7.0(@types/react@19.2.17)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(@mcp-use/client@2.1.4(@modelcontextprotocol/server@2.0.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(zod@4.5.4))(@types/node@22.19.15)(class-variance-authority@0.7.1)(clsx@2.1.1)(jiti@2.7.0)(lucide-react@0.562.0(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(tailwind-merge@3.6.0)(zod@4.5.4))(react@19.2.8)
+        specifier: 0.14.0
+        version: 0.14.0(@miragon/mcp-toolkit-ui@2.3.0(cdc58d0b4ac78a30e10d507e86d80566))(@tanstack/react-query@5.102.8(react@19.2.8))(bpmn-js@18.28.0)(mcp-use@2.4.3(@base-ui/react@1.7.0(@types/react@19.2.17)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(@mcp-use/client@2.1.4(@modelcontextprotocol/server@2.0.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(zod@4.5.4))(@types/node@22.19.15)(class-variance-authority@0.7.1)(clsx@2.1.1)(jiti@2.7.0)(lucide-react@0.562.0(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(tailwind-merge@3.6.0)(zod@4.5.4))(react@19.2.8)
       '@miragon-ai/camunda7-connector':
-        specifier: 0.13.0
-        version: 0.13.0(@miragon/mcp-toolkit-ui@2.3.0(cdc58d0b4ac78a30e10d507e86d80566))(@tanstack/react-query@5.102.8(react@19.2.8))(bpmn-js@18.28.0)(mcp-use@2.4.3(@base-ui/react@1.7.0(@types/react@19.2.17)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(@mcp-use/client@2.1.4(@modelcontextprotocol/server@2.0.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(zod@4.5.4))(@types/node@22.19.15)(class-variance-authority@0.7.1)(clsx@2.1.1)(jiti@2.7.0)(lucide-react@0.562.0(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(tailwind-merge@3.6.0)(zod@4.5.4))(react@19.2.8)
+        specifier: 0.14.0
+        version: 0.14.0(@miragon/mcp-toolkit-ui@2.3.0(cdc58d0b4ac78a30e10d507e86d80566))(@tanstack/react-query@5.102.8(react@19.2.8))(bpmn-js@18.28.0)(mcp-use@2.4.3(@base-ui/react@1.7.0(@types/react@19.2.17)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(@mcp-use/client@2.1.4(@modelcontextprotocol/server@2.0.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(zod@4.5.4))(@types/node@22.19.15)(class-variance-authority@0.7.1)(clsx@2.1.1)(jiti@2.7.0)(lucide-react@0.562.0(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(tailwind-merge@3.6.0)(zod@4.5.4))(react@19.2.8)
       '@miragon-ai/widget-shell':
-        specifier: 0.13.0
-        version: 0.13.0(266cef544815ad068aa73de45ca9abaa)
+        specifier: 0.14.0
+        version: 0.14.0(266cef544815ad068aa73de45ca9abaa)
       '@miragon/mcp-toolkit-core':
         specifier: 2.3.0
         version: 2.3.0(mcp-use@2.4.3(@base-ui/react@1.7.0(@types/react@19.2.17)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(@mcp-use/client@2.1.4(@modelcontextprotocol/server@2.0.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(zod@4.5.4))(@types/node@22.19.15)(class-variance-authority@0.7.1)(clsx@2.1.1)(jiti@2.7.0)(lucide-react@0.562.0(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(tailwind-merge@3.6.0)(zod@4.5.4))(zod@4.5.4)
@@ -126,7 +126,7 @@ importers:
         version: 8.0.16(@types/node@22.19.15)(jiti@2.7.0)
       vitest:
         specifier: 4.1.4
-        version: 4.1.4(@types/node@22.19.15)(vite@8.0.16(@types/node@22.19.15)(jiti@2.7.0))
+        version: 4.1.4(@opentelemetry/api@1.9.1)(@types/node@22.19.15)(vite@8.0.16(@types/node@22.19.15)(jiti@2.7.0))
 
 packages:
 
@@ -308,12 +308,12 @@ packages:
       tailwind-merge:
         optional: true
 
-  '@miragon-ai/analytics-client@0.13.0':
-    resolution: {integrity: sha512-jZCeOvQ4b3JxE8B5aw9OugParWYEC/A/Uke8dar+9pBXTIMAqPH2MHXbm+XUId15ZwZsvUyqGJb3s51xuvmcSg==}
+  '@miragon-ai/analytics-client@0.14.0':
+    resolution: {integrity: sha512-aLOXJrDt2NBJMhk/JPbr99UwJ9tQmed4l90BY7CpHAfMSbKD18j8U/kUGHEKZUrohiObVeqloQqUylZQ+yIpQw==}
     engines: {node: '>=22'}
 
-  '@miragon-ai/analytics-connector@0.13.0':
-    resolution: {integrity: sha512-HNkDivoG48g3wQg6mq7bisuhrlRuVXjkjDnQEPOirNyJaVKQdRn2IIm0ms/hLx5/i+EjJNoW3TOXpmjDHrMNyg==}
+  '@miragon-ai/analytics-connector@0.14.0':
+    resolution: {integrity: sha512-8Ev45bzvr4cmK3QsUAq/6KSCUQhPS6yf2f3myuWRYpGFwz/9LIowSbkh1HI+Debnn+Hu4Lf1nwFwR3V56aulDQ==}
     engines: {node: '>=22.22.2'}
     peerDependencies:
       mcp-use: 2.4.3
@@ -322,12 +322,12 @@ packages:
       react:
         optional: true
 
-  '@miragon-ai/camunda7-client@0.13.0':
-    resolution: {integrity: sha512-f0U1g99LA/5DgmL1JNspcaP0sfBg4mUn/BpJSRcuEyxvKAzYVKCqxkt87C8pVinfOfE2xrgSBNxoypOe1cZySQ==}
+  '@miragon-ai/camunda7-client@0.14.0':
+    resolution: {integrity: sha512-SKcCc5gb+8SdW3Ii5Yephw3mpY/21XBUAwvGC/w/zdVAdzAk+F0PVkFdVNB5tMBNWJk0awiPgAh1wrLccPjcKg==}
     engines: {node: '>=22'}
 
-  '@miragon-ai/camunda7-connector@0.13.0':
-    resolution: {integrity: sha512-XAENqxSJIXSUzETTPg+QhGqBTRpC5G69HsBZ5z/c1EEjg2GAsItWrk+pN/kO3oKTgZa13vp+vZTMd1Oq0LwEhQ==}
+  '@miragon-ai/camunda7-connector@0.14.0':
+    resolution: {integrity: sha512-Oue75nthGnoH22G4IYBLhlEGgdoRPuUUhdcNVBzXwDT43/DcpDYhDQax00pRqK8YIGTc/uSWrPWOe19nMWZsRQ==}
     engines: {node: '>=22.22.2'}
     peerDependencies:
       mcp-use: 2.4.3
@@ -336,8 +336,8 @@ packages:
       react:
         optional: true
 
-  '@miragon-ai/widget-shell@0.13.0':
-    resolution: {integrity: sha512-+AE2tvwSoAcUBxXQBVpNQ7G6qgxK7PFmsTYOi6kvp2OfyRwcVU+VTP+VQrg+2khXFz+PNj+ZV0c3BXdaSpdXPQ==}
+  '@miragon-ai/widget-shell@0.14.0':
+    resolution: {integrity: sha512-n6b7Wg5vG2qC291EHHjkxEoYSaAWQl+3nD9yI2CM1xbT0Qqwjy99BCAEwtoMCxHOtLnzh5IqJOtnJimq4ZztWg==}
     engines: {node: '>=22.22.2'}
     peerDependencies:
       '@miragon/mcp-toolkit-core': 2.3.0
@@ -392,6 +392,10 @@ packages:
     peerDependencies:
       '@emnapi/core': ^1.7.1 || ^2.0.0-alpha.4
       '@emnapi/runtime': ^1.7.1 || ^2.0.0-alpha.4
+
+  '@opentelemetry/api@1.9.1':
+    resolution: {integrity: sha512-gLyJlPHPZYdAk1JENA9LeHejZe1Ti77/pTeFm/nMXmQH/HFZlcS/O2XJB+L8fkbrNSqhdtlvjBVjxwUYanNH5Q==}
+    engines: {node: '>=8.0.0'}
 
   '@oxc-project/types@0.133.0':
     resolution: {integrity: sha512-KzkdCd6Uxqnf6l3HOw1xfatAlUURA0g14cvBYFyJ5SaNOQbOUvBr9PKArcPcrNIeRsBdgcUzOGrhKveVpvOIGA==}
@@ -1407,6 +1411,9 @@ packages:
     resolution: {integrity: sha512-Izi8RQcffqCeNVgFigKli1ssklIbpHnCYc6AknXGYoB6grJqyeby7jv12JUQgmTAnIDnbck1uxksT4dzN3PWBA==}
     engines: {node: '>=12'}
 
+  bintrees@1.0.2:
+    resolution: {integrity: sha512-VOMgTMwjAaUG580SXn3LacVgjurrbMme7ZZNYGSSV7mmtY6QQRh0Eg3pwIcntQ77DErK1L0NxkbetjcoXzVwKw==}
+
   bpmn-js@18.28.0:
     resolution: {integrity: sha512-5xO8dBugA7UQriYAeP5FcDG+kVNlL9JlM0v1AtYCxQx3P0bXkLy19VxTnzgBSo0d826SZApTnIeYFhUG994XSQ==}
 
@@ -1787,6 +1794,11 @@ packages:
       preact-render-to-string:
         optional: true
 
+  prom-client@15.1.3:
+    resolution: {integrity: sha512-6ZiOBfCywsD4k1BN9IX0uZhF+tJkV8q8llP64G5Hajs4JOeVLPCwpPVcpXy3BwYiUGgyJzsJJQeOIv7+hDSq8g==}
+    engines: {node: ^16 || ^18 || >=20}
+    deprecated: prom-client has been replaced by @prometheus-io/client
+
   radix-ui@1.6.7:
     resolution: {integrity: sha512-QBdhh1arIEUvPC0dQ5+nwWAxt7+N+oP/9jPwjJkGFoSk/sqxg32gJtSXGtFh8frAIcS6oC9cx2Q+7KYCQLOAeA==}
     peerDependencies:
@@ -1885,6 +1897,9 @@ packages:
     resolution: {integrity: sha512-uxc/zpqFg6x7C8vOE7lh6Lbda8eEL9zmVm/PLeTPBRhh1xCgdWaQ+J1CUieGpIfm2HdtsUpRv+HshiasBMcc6A==}
     engines: {node: '>=6'}
 
+  tdigest@0.1.3:
+    resolution: {integrity: sha512-zbRt+lT+/H4fRItHshczHErVCQnitJk8MfMT24MqFJf3YL7SJJPqGIGeuOdvxXxM/AHFzKBl7WoyaYwqO9s3Kw==}
+
   tiny-svg@4.1.4:
     resolution: {integrity: sha512-cBaEACCbouYrQc9RG+eTXnPYosX1Ijqty/I6DdXovwDd89Pwu4jcmpOR7BuFEF9YCcd7/AWwasE0207WMK7hdw==}
     engines: {node: '>= 20'}
@@ -1938,8 +1953,8 @@ packages:
       '@types/react':
         optional: true
 
-  use-sync-external-store@1.6.0:
-    resolution: {integrity: sha512-Pp6GSwGP/NrPIrxVFAIkOQeyw8lFenOHijQWkUTrDvrF4ALqylP2C/KCkeS9dpUM3KvYRQhna5vt7IL95+ZQ9w==}
+  use-sync-external-store@1.7.0:
+    resolution: {integrity: sha512-6L+EeigHMQhdaIPNIFUKwfWJSwWFQ8gJbJ2DLOs5sDIegTwR9fRxvnM3uciHKjIZhFz+KAv2emhWMRvDmMcY8A==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
@@ -2093,7 +2108,7 @@ snapshots:
       '@floating-ui/utils': 0.2.12
       react: 19.2.8
       react-dom: 19.2.8(react@19.2.8)
-      use-sync-external-store: 1.6.0(react@19.2.8)
+      use-sync-external-store: 1.7.0(react@19.2.8)
     optionalDependencies:
       '@types/react': 19.2.17
 
@@ -2104,7 +2119,7 @@ snapshots:
       react: 19.2.8
       react-dom: 19.2.8(react@19.2.8)
       reselect: 5.3.0
-      use-sync-external-store: 1.6.0(react@19.2.8)
+      use-sync-external-store: 1.7.0(react@19.2.8)
     optionalDependencies:
       '@types/react': 19.2.17
 
@@ -2231,14 +2246,14 @@ snapshots:
       react-dom: 19.2.8(react@19.2.8)
       tailwind-merge: 3.6.0
 
-  '@miragon-ai/analytics-client@0.13.0':
+  '@miragon-ai/analytics-client@0.14.0':
     dependencies:
       zod: 4.5.4
 
-  '@miragon-ai/analytics-connector@0.13.0(@miragon/mcp-toolkit-ui@2.3.0(cdc58d0b4ac78a30e10d507e86d80566))(@tanstack/react-query@5.102.8(react@19.2.8))(bpmn-js@18.28.0)(mcp-use@2.4.3(@base-ui/react@1.7.0(@types/react@19.2.17)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(@mcp-use/client@2.1.4(@modelcontextprotocol/server@2.0.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(zod@4.5.4))(@types/node@22.19.15)(class-variance-authority@0.7.1)(clsx@2.1.1)(jiti@2.7.0)(lucide-react@0.562.0(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(tailwind-merge@3.6.0)(zod@4.5.4))(react@19.2.8)':
+  '@miragon-ai/analytics-connector@0.14.0(@miragon/mcp-toolkit-ui@2.3.0(cdc58d0b4ac78a30e10d507e86d80566))(@tanstack/react-query@5.102.8(react@19.2.8))(bpmn-js@18.28.0)(mcp-use@2.4.3(@base-ui/react@1.7.0(@types/react@19.2.17)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(@mcp-use/client@2.1.4(@modelcontextprotocol/server@2.0.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(zod@4.5.4))(@types/node@22.19.15)(class-variance-authority@0.7.1)(clsx@2.1.1)(jiti@2.7.0)(lucide-react@0.562.0(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(tailwind-merge@3.6.0)(zod@4.5.4))(react@19.2.8)':
     dependencies:
-      '@miragon-ai/analytics-client': 0.13.0
-      '@miragon-ai/widget-shell': 0.13.0(266cef544815ad068aa73de45ca9abaa)
+      '@miragon-ai/analytics-client': 0.14.0
+      '@miragon-ai/widget-shell': 0.14.0(266cef544815ad068aa73de45ca9abaa)
       '@miragon/mcp-toolkit-core': 2.3.0(mcp-use@2.4.3(@base-ui/react@1.7.0(@types/react@19.2.17)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(@mcp-use/client@2.1.4(@modelcontextprotocol/server@2.0.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(zod@4.5.4))(@types/node@22.19.15)(class-variance-authority@0.7.1)(clsx@2.1.1)(jiti@2.7.0)(lucide-react@0.562.0(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(tailwind-merge@3.6.0)(zod@4.5.4))(zod@4.5.4)
       mcp-use: 2.4.3(@base-ui/react@1.7.0(@types/react@19.2.17)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(@mcp-use/client@2.1.4(@modelcontextprotocol/server@2.0.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(zod@4.5.4))(@types/node@22.19.15)(class-variance-authority@0.7.1)(clsx@2.1.1)(jiti@2.7.0)(lucide-react@0.562.0(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(tailwind-merge@3.6.0)(zod@4.5.4)
       zod: 4.5.4
@@ -2250,14 +2265,14 @@ snapshots:
       - bpmn-js
       - postgres
 
-  '@miragon-ai/camunda7-client@0.13.0':
+  '@miragon-ai/camunda7-client@0.14.0':
     dependencies:
       zod: 4.5.4
 
-  '@miragon-ai/camunda7-connector@0.13.0(@miragon/mcp-toolkit-ui@2.3.0(cdc58d0b4ac78a30e10d507e86d80566))(@tanstack/react-query@5.102.8(react@19.2.8))(bpmn-js@18.28.0)(mcp-use@2.4.3(@base-ui/react@1.7.0(@types/react@19.2.17)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(@mcp-use/client@2.1.4(@modelcontextprotocol/server@2.0.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(zod@4.5.4))(@types/node@22.19.15)(class-variance-authority@0.7.1)(clsx@2.1.1)(jiti@2.7.0)(lucide-react@0.562.0(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(tailwind-merge@3.6.0)(zod@4.5.4))(react@19.2.8)':
+  '@miragon-ai/camunda7-connector@0.14.0(@miragon/mcp-toolkit-ui@2.3.0(cdc58d0b4ac78a30e10d507e86d80566))(@tanstack/react-query@5.102.8(react@19.2.8))(bpmn-js@18.28.0)(mcp-use@2.4.3(@base-ui/react@1.7.0(@types/react@19.2.17)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(@mcp-use/client@2.1.4(@modelcontextprotocol/server@2.0.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(zod@4.5.4))(@types/node@22.19.15)(class-variance-authority@0.7.1)(clsx@2.1.1)(jiti@2.7.0)(lucide-react@0.562.0(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(tailwind-merge@3.6.0)(zod@4.5.4))(react@19.2.8)':
     dependencies:
-      '@miragon-ai/camunda7-client': 0.13.0
-      '@miragon-ai/widget-shell': 0.13.0(266cef544815ad068aa73de45ca9abaa)
+      '@miragon-ai/camunda7-client': 0.14.0
+      '@miragon-ai/widget-shell': 0.14.0(266cef544815ad068aa73de45ca9abaa)
       '@miragon/mcp-toolkit-core': 2.3.0(mcp-use@2.4.3(@base-ui/react@1.7.0(@types/react@19.2.17)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(@mcp-use/client@2.1.4(@modelcontextprotocol/server@2.0.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(zod@4.5.4))(@types/node@22.19.15)(class-variance-authority@0.7.1)(clsx@2.1.1)(jiti@2.7.0)(lucide-react@0.562.0(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(tailwind-merge@3.6.0)(zod@4.5.4))(zod@4.5.4)
       mcp-use: 2.4.3(@base-ui/react@1.7.0(@types/react@19.2.17)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(@mcp-use/client@2.1.4(@modelcontextprotocol/server@2.0.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(zod@4.5.4))(@types/node@22.19.15)(class-variance-authority@0.7.1)(clsx@2.1.1)(jiti@2.7.0)(lucide-react@0.562.0(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(tailwind-merge@3.6.0)(zod@4.5.4)
       zod: 4.5.4
@@ -2269,12 +2284,13 @@ snapshots:
       - bpmn-js
       - postgres
 
-  '@miragon-ai/widget-shell@0.13.0(266cef544815ad068aa73de45ca9abaa)':
+  '@miragon-ai/widget-shell@0.14.0(266cef544815ad068aa73de45ca9abaa)':
     dependencies:
       '@miragon/mcp-toolkit-core': 2.3.0(mcp-use@2.4.3(@base-ui/react@1.7.0(@types/react@19.2.17)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(@mcp-use/client@2.1.4(@modelcontextprotocol/server@2.0.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(zod@4.5.4))(@types/node@22.19.15)(class-variance-authority@0.7.1)(clsx@2.1.1)(jiti@2.7.0)(lucide-react@0.562.0(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(tailwind-merge@3.6.0)(zod@4.5.4))(zod@4.5.4)
       bpmn-js: 18.28.0
       clsx: 2.1.1
       mcp-use: 2.4.3(@base-ui/react@1.7.0(@types/react@19.2.17)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(@mcp-use/client@2.1.4(@modelcontextprotocol/server@2.0.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(zod@4.5.4))(@types/node@22.19.15)(class-variance-authority@0.7.1)(clsx@2.1.1)(jiti@2.7.0)(lucide-react@0.562.0(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(tailwind-merge@3.6.0)(zod@4.5.4)
+      prom-client: 15.1.3
       tailwind-merge: 3.6.0
       zod: 4.5.4
     optionalDependencies:
@@ -2334,6 +2350,8 @@ snapshots:
       '@emnapi/runtime': 1.10.0
       '@tybys/wasm-util': 0.10.3
     optional: true
+
+  '@opentelemetry/api@1.9.1': {}
 
   '@oxc-project/types@0.133.0': {}
 
@@ -3338,6 +3356,8 @@ snapshots:
 
   assertion-error@2.0.1: {}
 
+  bintrees@1.0.2: {}
+
   bpmn-js@18.28.0:
     dependencies:
       bpmn-moddle: 10.2.0
@@ -3664,6 +3684,11 @@ snapshots:
 
   preact@10.29.8: {}
 
+  prom-client@15.1.3:
+    dependencies:
+      '@opentelemetry/api': 1.9.1
+      tdigest: 0.1.3
+
   radix-ui@1.6.7(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dom@19.2.8(react@19.2.8))(react@19.2.8):
     dependencies:
       '@radix-ui/primitive': 1.1.7
@@ -3808,6 +3833,10 @@ snapshots:
 
   tapable@2.3.3: {}
 
+  tdigest@0.1.3:
+    dependencies:
+      bintrees: 1.0.2
+
   tiny-svg@4.1.4: {}
 
   tinybench@2.9.0: {}
@@ -3844,7 +3873,7 @@ snapshots:
     optionalDependencies:
       '@types/react': 19.2.17
 
-  use-sync-external-store@1.6.0(react@19.2.8):
+  use-sync-external-store@1.7.0(react@19.2.8):
     dependencies:
       react: 19.2.8
 
@@ -3860,7 +3889,7 @@ snapshots:
       fsevents: 2.3.3
       jiti: 2.7.0
 
-  vitest@4.1.11(@types/node@22.19.15)(vite@8.0.16(@types/node@22.19.15)(jiti@2.7.0)):
+  vitest@4.1.11(@opentelemetry/api@1.9.1)(@types/node@22.19.15)(vite@8.0.16(@types/node@22.19.15)(jiti@2.7.0)):
     dependencies:
       '@vitest/expect': 4.1.11
       '@vitest/mocker': 4.1.11(vite@8.0.16(@types/node@22.19.15)(jiti@2.7.0))
@@ -3883,11 +3912,12 @@ snapshots:
       vite: 8.0.16(@types/node@22.19.15)(jiti@2.7.0)
       why-is-node-running: 2.3.0
     optionalDependencies:
+      '@opentelemetry/api': 1.9.1
       '@types/node': 22.19.15
     transitivePeerDependencies:
       - msw
 
-  vitest@4.1.4(@types/node@22.19.15)(vite@8.0.16(@types/node@22.19.15)(jiti@2.7.0)):
+  vitest@4.1.4(@opentelemetry/api@1.9.1)(@types/node@22.19.15)(vite@8.0.16(@types/node@22.19.15)(jiti@2.7.0)):
     dependencies:
       '@vitest/expect': 4.1.4
       '@vitest/mocker': 4.1.4(vite@8.0.16(@types/node@22.19.15)(jiti@2.7.0))
@@ -3910,6 +3940,7 @@ snapshots:
       vite: 8.0.16(@types/node@22.19.15)(jiti@2.7.0)
       why-is-node-running: 2.3.0
     optionalDependencies:
+      '@opentelemetry/api': 1.9.1
       '@types/node': 22.19.15
     transitivePeerDependencies:
       - msw

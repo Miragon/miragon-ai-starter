@@ -1,6 +1,6 @@
 > [!NOTE]
 > Read-only mirror of [`templates/composed-server`](https://github.com/Miragon/miragon-ai/tree/main/templates/composed-server)
-> in [Miragon/miragon-ai](https://github.com/Miragon/miragon-ai), synced on every release (currently v0.13.0).
+> in [Miragon/miragon-ai](https://github.com/Miragon/miragon-ai), synced on every release (currently v0.14.0).
 > Please open issues and pull requests there.
 
 # Miragon AI Starter
@@ -170,6 +170,9 @@ docker run -p 8400:8400 \
   gateway; `PORT` changes the HTTP port.
 - Both stores are in-memory by default — without the volume, user settings and
   saved dashboards are lost on every restart.
+- `/health/live`, `/health/ready` and `/metrics` (Prometheus) are served next
+  to `/mcp`, outside any OAuth gate — the image's `HEALTHCHECK` polls
+  `/health/ready`; point Kubernetes probes and a ServiceMonitor at them.
 
 ## Going further
 
