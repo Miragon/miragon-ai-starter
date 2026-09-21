@@ -1,6 +1,6 @@
 > [!NOTE]
 > Read-only mirror of [`templates/composed-server`](https://github.com/Miragon/miragon-ai/tree/main/templates/composed-server)
-> in [Miragon/miragon-ai](https://github.com/Miragon/miragon-ai), synced on every release (currently v0.14.0).
+> in [Miragon/miragon-ai](https://github.com/Miragon/miragon-ai), synced on every release (currently v0.15.0).
 > Please open issues and pull requests there.
 
 # Miragon AI Starter
