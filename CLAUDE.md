@@ -62,9 +62,9 @@ external infrastructure.
    `devDependencies`: upgrade all `@miragon-ai/*` packages together to one
    version. The consumer-shared libraries are ranged `peerDependencies`
    instead — `react`/`react-dom` (`^19.2.0`), `zod` (`^4.4.0`) and
-   `@miragon/mcp-toolkit-*` (`~2.4.0`) — so they dedupe against your app's
+   `@miragon/mcp-toolkit-*` (`~2.5.0`) — so they dedupe against your app's
    copy; keep an exact copy of each in `devDependencies` for local builds.
-   **`mcp-use` stays exactly pinned** even as a peer (`2.5.1`): a duplicate
+   **`mcp-use` stays exactly pinned** even as a peer (`2.7.1`): a duplicate
    `mcp-use` instance breaks the React context and hangs every in-widget query
    on "Loading…" (invariant #4). `@mcp-use/client` (a dev dependency of `server/`) is
    pre-pinned to the newest version mcp-use's optional peer range accepts, so
@@ -79,6 +79,16 @@ external infrastructure.
 7. **`.env.example` documents every env var the server reads** — both drift
    directions are guarded by `server/test/env-example.test.ts`; add your
    module's vars there.
+8. **Toolsets fail closed.** A module opts into the `module:toolset` suffix by
+   declaring `toolsets: createToolsetVocabulary(...)` on its definition (the
+   old `supportsToolsets` flag is deprecated); the composition resolves ONE
+   concrete toolset per module per boot and logs it. This server installs no
+   OAuth, so a module without a suffix runs its read-only floor, an
+   empty/unknown suffix falls back to it, and an admin-like toolset is only
+   reachable by naming it. Gate durable writes on the vocabulary
+   (`allowsDurableWrites(resolve(toolset))`) — never on a name compare or on
+   `toolset === undefined`, both of which fail open. Details: `create-module`
+   Step 5.
 
 ## Verification
 

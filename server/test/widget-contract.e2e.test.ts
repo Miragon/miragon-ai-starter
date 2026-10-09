@@ -1,25 +1,41 @@
-import net from "node:net"
 import path from "node:path"
 import { afterAll, beforeAll, describe, expect, it, vi } from "vitest"
-import type { AppPlugin } from "@miragon/mcp-toolkit-core"
 import { VIEW_RESOURCE_URI_PREFIX, viewResourceUri } from "@miragon/mcp-toolkit-core"
-import { createFrameworkApp } from "@miragon/mcp-toolkit-core/tools"
-import type { MCPServer } from "mcp-use"
 import { Client, StreamableHTTPClientTransport } from "@modelcontextprotocol/client"
-import { getAppConfig, getPlugins } from "../src/setup.js"
+import { CAMUNDA7_ADMIN_ONLY_TOOLS } from "@miragon-ai/camunda7-connector"
+import type { RunningServer } from "@miragon-ai/widget-shell/server"
+import { createApp, packageVersion, SERVER_INSTRUCTIONS } from "../src/app.js"
 
 const FIXTURE_JS = path.join(import.meta.dirname, "fixtures", "mcp-app.js")
 
-/** Reserve a free TCP port by binding to port 0 and releasing it again. */
-async function getFreePort(): Promise<number> {
-  return await new Promise((resolve, reject) => {
-    const probe = net.createServer()
-    probe.once("error", reject)
-    probe.listen(0, "127.0.0.1", () => {
-      const { port } = probe.address() as net.AddressInfo
-      probe.close(() => resolve(port))
-    })
-  })
+/**
+ * Boot the REAL composition in-process (`createApp`, exactly what
+ * `src/index.ts` runs, with a stand-in widget bundle) and list its tools. The
+ * camunda7 module boots against a dead engine URL — tools register fine; only
+ * actual calls would fail.
+ */
+async function bootAndList(activeModules: string | undefined): Promise<{
+  app: RunningServer
+  client: Client
+  origin: string
+  tools: ToolEntry[]
+}> {
+  vi.stubEnv("CAMUNDA_BASE_URL", "http://localhost:1")
+  vi.stubEnv("CAMUNDA_ENGINES_FILE", undefined)
+  vi.stubEnv("CAMUNDA_ENGINES_JSON", undefined)
+  vi.stubEnv("CAMUNDA_COCKPIT_URL", undefined)
+  vi.stubEnv("CAMUNDA_ALLOW_DEPLOYMENTS", undefined)
+  vi.stubEnv("MCP_ACTIVE_MODULES", activeModules)
+  // Persistence must stay in-memory regardless of the dev shell's env.
+  vi.stubEnv("MCP_PROFILE_DIR", undefined)
+  vi.stubEnv("MCP_DASHBOARD_DIR", undefined)
+
+  const composed = await createApp(process.env, { bundle: { jsPath: FIXTURE_JS } })
+  const app = await composed.listen({ port: 0, host: "127.0.0.1" })
+  const origin = `http://127.0.0.1:${app.port}`
+  const client = new Client({ name: "widget-contract-test", version: "0.0.0" })
+  await client.connect(new StreamableHTTPClientTransport(new URL(`${origin}/mcp`)))
+  return { app, client, origin, tools: (await client.listTools()).tools }
 }
 
 type ToolEntry = { name: string; _meta?: Record<string, unknown> }
@@ -47,47 +63,28 @@ function uiBlock(meta: Record<string, unknown>): Record<string, unknown> {
  * in-widget callTool.
  */
 describe("widget wire contract (dual-protocol _meta)", () => {
-  let app: MCPServer
+  let app: RunningServer
   let client: Client
   let tools: ToolEntry[]
   let serverOrigin: string
 
   beforeAll(async () => {
-    // The camunda7 module boots against a dead engine URL — tools register
-    // fine; only actual calls would fail.
-    vi.stubEnv("CAMUNDA_BASE_URL", "http://localhost:1")
-    vi.stubEnv("CAMUNDA_ENGINES_FILE", undefined)
-    vi.stubEnv("CAMUNDA_ENGINES_JSON", undefined)
-    vi.stubEnv("CAMUNDA_COCKPIT_URL", undefined)
-    vi.stubEnv("MCP_ACTIVE_MODULES", undefined)
-    // Persistence must stay in-memory regardless of the dev shell's env.
-    vi.stubEnv("MCP_PROFILE_DIR", undefined)
-    vi.stubEnv("MCP_DASHBOARD_DIR", undefined)
-
-    app = await createFrameworkApp({
-      name: "acme-mcp",
-      version: "0.1.0",
-      host: "127.0.0.1",
-      plugins: getPlugins() as AppPlugin[],
-      appConfig: getAppConfig(),
-      app: {
-        bundle: { jsPath: FIXTURE_JS },
-        builder: true,
-      },
-    })
-    const port = await getFreePort()
-    await app.listen(port)
-    serverOrigin = `http://127.0.0.1:${port}`
-
-    client = new Client({ name: "widget-contract-test", version: "0.0.0" })
-    await client.connect(new StreamableHTTPClientTransport(new URL(`${serverOrigin}/mcp`)))
-    tools = (await client.listTools()).tools
+    ;({ app, client, origin: serverOrigin, tools } = await bootAndList(undefined))
   })
 
   afterAll(async () => {
     await client?.close()
-    await app?.close()
+    await app?.shutdown()
     vi.unstubAllEnvs()
+  })
+
+  it("reports serverInfo from package.json plus the instructions", () => {
+    expect(client.getServerVersion()).toMatchObject({
+      name: "acme-mcp",
+      version: packageVersion(),
+      title: "Acme MCP",
+    })
+    expect(client.getInstructions()).toBe(SERVER_INSTRUCTIONS)
   })
 
   it("registers the custom notes module alongside the Miragon modules", () => {
@@ -222,4 +219,29 @@ describe("widget wire contract (dual-protocol _meta)", () => {
     // mcp-use appends the request-resolved server origin itself since 2.x.
     expect(csp!.connectDomains).toContain(serverOrigin)
   })
+})
+
+/**
+ * Toolsets fail closed: this server installs no OAuth, so no selection that
+ * does not NAME `camunda7:admin` may list an admin-only tool — not unset, not
+ * an empty or unknown suffix — and the dashboard writes stay off.
+ */
+describe("fail-closed toolsets", () => {
+  it.each([undefined, "all", "camunda7:", "camunda7:bogus,analytics:,notes"])(
+    "MCP_ACTIVE_MODULES=%j lists no admin-only tool and no dashboard writes",
+    async (activeModules) => {
+      const { app, client, tools } = await bootAndList(activeModules)
+      try {
+        const names = tools.map((t) => t.name)
+        expect(names).toContain("camunda7_list_process_instances")
+        for (const tool of [...CAMUNDA7_ADMIN_ONLY_TOOLS, "save-dashboard", "delete-dashboard"]) {
+          expect(names, `${tool} must not be listed`).not.toContain(tool)
+        }
+      } finally {
+        await client.close()
+        await app.shutdown()
+        vi.unstubAllEnvs()
+      }
+    },
+  )
 })

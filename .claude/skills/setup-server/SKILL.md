@@ -29,7 +29,9 @@ Verify before configuring anything: open `http://localhost:8400/mcp/inspector` a
 call `notes_show_notes` — the example module needs no external infrastructure,
 so a rendered notes widget proves server, widget bundle, and inspector work.
 Then read the boot log: every warning there is actionable (unknown env var,
-missing Prometheus URL, engine auth problems).
+missing Prometheus URL, engine auth problems), and one info line
+(`[acme-mcp] Toolsets — camunda7:read-only (default without OAuth), …`) states
+what each module may do — read-only until you widen it (Step 3).
 
 ## Step 2 — connect the engine and Prometheus
 
@@ -55,7 +57,12 @@ operaton | camunda7`) and `auth` — overrides the single-engine shorthand
   globally unique across environments.
 - `PROMETHEUS_URL` — unset defaults to `http://localhost:9090`, which does
   **not** match the playground stack (host port 8460); every analytics query
-  then fails. The server warns at boot when unset.
+  then fails. The server warns at boot when unset. A protected Prometheus takes
+  `PROMETHEUS_BEARER_TOKEN` or `PROMETHEUS_USERNAME`/`PROMETHEUS_PASSWORD`
+  (plus `PROMETHEUS_HEADERS`, a JSON object, e.g. for a tenant id).
+- `CAMUNDA_REQUEST_TIMEOUT_MS` / `PROMETHEUS_TIMEOUT_MS` — per-request
+  deadlines (default 30000 ms); a hung upstream then fails the tool call with
+  a timeout error instead of holding it.
 
 No engine at hand? The
 [miragon-ai playground](https://github.com/Miragon/miragon-ai/tree/main/playground)
@@ -65,15 +72,29 @@ defaults match this template's `.env.example`.
 ## Step 3 — select modules and toolsets
 
 `MCP_ACTIVE_MODULES` is a comma list; unset or `all` activates every module.
-A `module:toolset` suffix narrows a module's tool surface:
+Each module runs ONE toolset per boot, named by a `module:toolset` suffix:
 
 ```bash
-MCP_ACTIVE_MODULES=camunda7:read-only,analytics,notes
+MCP_ACTIVE_MODULES=camunda7:operations,analytics:standard,notes
 ```
 
-- camunda7 supports `read-only | operations | admin`; analytics `read-only`.
-- Unknown module names warn and are skipped; a toolset suffix on a module
-  without toolsets warns and exposes all tools (fail-open).
+- camunda7 supports `read-only | operations | admin`; analytics
+  `read-only | standard` (`standard` adds the settings save).
+- **Fail-closed default.** This server installs no OAuth, so a module without
+  a suffix runs `read-only`; an empty (`camunda7:`) or unknown suffix warns and
+  falls back to `read-only`; `admin` (delete/modify, migrations, signals, the
+  external-task worker protocol) is only ever reached by naming it. Check the
+  boot log's `Toolsets —` line after every change.
+- `camunda7_create_deployment` additionally needs `CAMUNDA_ALLOW_DEPLOYMENTS=true`
+  next to `camunda7:admin` — deploying a BPMN/DMN runs code inside the engine
+  JVM (JUEL expressions, scripts). Strict `true`/`false` (empty = unset); junk fails the boot.
+- Widening is a security decision: the server listens on all interfaces with
+  no auth of its own, so write toolsets are open to anyone who reaches the
+  port. Behind an authenticating gateway the server still sees no identity —
+  which is exactly why the suffix must stay explicit there.
+- Unknown module names warn and are skipped; a suffix on a module without
+  toolsets (e.g. `notes:read-only`) warns and is ignored — that module
+  registers all its tools.
 - All widgets stay in the one Vite bundle regardless — inactive modules just
   register no tools. Module selection is runtime-only; there is no per-module
   bundle.
@@ -85,7 +106,7 @@ deployments point them at directories (mounted volumes in Docker):
 
 ```bash
 MCP_PROFILE_DIR=./.data/profiles       # per-user settings (language, theme, module slices)
-MCP_DASHBOARD_DIR=./.data/dashboards   # saved builder dashboards
+MCP_DASHBOARD_DIR=./.data/dashboards   # saved builder dashboards — only once OAuth is installed (builder is off without it)
 MCP_PROFILE_SESSION_TTL_DAYS=30        # expiry for session-keyed records; 0 disables
 ```
 
@@ -105,7 +126,7 @@ then reinstall so the lockfile matches:
    `server/package.json`'s dependencies, and in every import
    (`server/src/setup.ts`, `server/src/ui/widget-registry.ts`,
    `server/test/widget-registry.test.ts`)
-3. the `acme-mcp` labels in `server/src/index.ts` and `setup.ts`
+3. the `acme-mcp` labels in `server/src/app.ts` and `setup.ts`
 4. `pnpm install` to refresh `pnpm-lock.yaml` (the Docker build uses
    `--frozen-lockfile`)
 
@@ -119,7 +140,7 @@ colors live here.
 ```bash
 pnpm install                    # once, then COMMIT pnpm-lock.yaml
 docker build -t my-mcp-server .
-docker run -p 8400:8400 \
+docker run -p 127.0.0.1:8400:8400 \
   -e CAMUNDA_BASE_URL=http://host.docker.internal:8410/engine-rest \
   -e MCP_PROFILE_DIR=/data/profiles -v mcp-data:/data \
   my-mcp-server
@@ -127,7 +148,10 @@ docker run -p 8400:8400 \
 
 - Config comes from the environment — the image does not read `.env`.
 - `PORT` sets the HTTP port (default 8400); `MCP_URL` is the public base URL
-  when running behind a proxy or MCP gateway.
+  when running behind a proxy or MCP gateway — and, with
+  `MCP_ALLOWED_HOSTS`/`MCP_ALLOWED_ORIGINS`, the only non-localhost
+  `Host`/`Origin` the server accepts: anything else gets 403 (DNS-rebinding
+  protection), with the message naming the variable to set.
 - Federation/aggregation across MCP servers belongs in an external gateway
   (e.g. agentgateway) IN FRONT of this server — this repo builds one
   self-contained server; don't add upstream/proxy mechanics to it.
@@ -177,6 +201,11 @@ Prometheus configured:
 pnpm exec dotenv -e .env -- pnpm --filter ./server exec mcp-use dev --tunnel --no-open
 ```
 
+Under `mcp-use dev` the CLI checks `Host` itself and admits its tunnel host,
+so the tunnel needs no `MCP_ALLOWED_HOSTS` (browser `Origin`s are still
+checked). A built server (`pnpm start`, the image) behind a tunnel or proxy
+needs `MCP_URL` set to the public URL — else every call gets 403.
+
 ## Step 8 — verify
 
 ```bash
@@ -190,12 +219,12 @@ missing-URL warnings — is part of done.
 
 ## Troubleshooting
 
-| Symptom                                   | Cause                                                                                                                                             |
-| ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Every in-widget query hangs on "Loading…" | `resolve.dedupe` in `server/vite.config.ts` was trimmed, or a second copy of React/toolkit/mcp-use got installed                                  |
-| Widgets render unstyled                   | widget sources outside the Tailwind scan set (workspace modules are globbed; npm-installed ones need an `@source` in `server/src/ui/globals.css`) |
-| Analytics tools return empty results      | `CAMUNDA_ENGINE_ID` doesn't match the engine's metrics `ENGINE_ID`, or `PROMETHEUS_URL` points at the wrong port                                  |
-| "Unknown environment variable" at boot    | typo, or a var this build doesn't read — `.env.example` is the authoritative list                                                                 |
-| Widget UI changes don't show up           | the bundle is read once at boot — restart `pnpm dev` at the repo root (it rebuilds modules + bundle on start)                                     |
-| A tool is missing                         | module not in `MCP_ACTIVE_MODULES`, or a toolset suffix (`:read-only`) filtered it                                                                |
-| Claude Desktop shows no tools at all      | a `"url"` entry in `claude_desktop_config.json` (stdio only — use the `mcp-remote` bridge from Step 7), or the app wasn't restarted               |
+| Symptom                                   | Cause                                                                                                                                                                                                               |
+| ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Every in-widget query hangs on "Loading…" | `resolve.dedupe` in `server/vite.config.ts` was trimmed, or a second copy of React/toolkit/mcp-use got installed                                                                                                    |
+| Widgets render unstyled                   | widget sources outside the Tailwind scan set (workspace modules are globbed; npm-installed ones need an `@source` in `server/src/ui/globals.css`)                                                                   |
+| Analytics tools return empty results      | `CAMUNDA_ENGINE_ID` doesn't match the engine's metrics `ENGINE_ID`, or `PROMETHEUS_URL` points at the wrong port                                                                                                    |
+| "Unknown environment variable" at boot    | typo, or a var this build doesn't read — `.env.example` is the authoritative list                                                                                                                                   |
+| Widget UI changes don't show up           | the bundle is read once at boot — restart `pnpm dev` at the repo root (it rebuilds modules + bundle on start)                                                                                                       |
+| A tool is missing                         | module not in `MCP_ACTIVE_MODULES`, or its toolset filtered it — without a suffix camunda7/analytics run `read-only` (see the boot log's `Toolsets —` line); deployments also need `CAMUNDA_ALLOW_DEPLOYMENTS=true` |
+| Claude Desktop shows no tools at all      | a `"url"` entry in `claude_desktop_config.json` (stdio only — use the `mcp-remote` bridge from Step 7), or the app wasn't restarted                                                                                 |

@@ -9,10 +9,12 @@ import { notesModule } from "@acme/mcp-notes"
 import {
   composeModules,
   createShellPlugin,
+  HTTP_EDGE_ENV_VARS,
   profileStoreFromEnv,
   startProfileSessionCleanup,
   type ComposableModule,
   type ProfileStore,
+  type ResolvedBoot,
 } from "@miragon-ai/widget-shell/server"
 
 /**
@@ -57,10 +59,12 @@ const MODULES: readonly ModuleDefinition[] = [camunda7Module, analyticsModule, n
 
 /**
  * App-owned env vars; each module contributes its own slice via
- * `knownEnvVars`. Every known var feeds the boot-time typo warner.
+ * `knownEnvVars`, the shared HTTP edge (`MCP_URL`, the Host/Origin
+ * allow-lists, the body cap, the metrics token) via `HTTP_EDGE_ENV_VARS`.
+ * Every known var feeds the boot-time typo warner.
  */
 const APP_ENV_VARS = [
-  "MCP_URL",
+  ...HTTP_EDGE_ENV_VARS,
   "MCP_ACTIVE_MODULES",
   "MCP_DASHBOARD_DIR",
   "MCP_PROFILE_DIR",
@@ -68,7 +72,8 @@ const APP_ENV_VARS = [
   "MCP_DEBUG_LEVEL",
 ]
 
-const composition = composeModules<SharedResources>({
+/** The composition `createApp` hands to the shared boot (`createComposedServer`). */
+export const composition = composeModules<SharedResources>({
   label: "acme-mcp",
   modules: MODULES,
   appEnvVars: APP_ENV_VARS,
@@ -77,11 +82,21 @@ const composition = composeModules<SharedResources>({
 /** Exported for the `.env.example` guard in `test/env-example.test.ts`. */
 export const KNOWN_ENV_VARS = composition.knownEnvVars
 
-export const warnUnknownEnvVars = composition.warnUnknownEnvVars
-export const emitBootWarnings = composition.emitBootWarnings
+/**
+ * The module selection as the shared boot resolves it: each module's
+ * effective toolset threaded into its config. This server installs no OAuth,
+ * so the selection is unauthenticated — every module without an explicit
+ * suffix runs its read-only floor (`MCP_ACTIVE_MODULES=camunda7:operations`
+ * widens it, for anyone who reaches the port), and the toolkit's dashboard
+ * builder stays off. `createApp` passes an OAuth provider to
+ * `createComposedServer` only once it really installs one.
+ */
+export function resolveBoot(env: NodeJS.ProcessEnv = process.env): ResolvedBoot {
+  return composition.resolveBoot(env)
+}
 
-export function getAppConfig(): AppConfig {
-  return composition.appConfig()
+export function getAppConfig(boot: ResolvedBoot = resolveBoot()): AppConfig {
+  return { activeApps: boot.entries, pipelines: {} }
 }
 
 // ── Persistence ──────────────────────────────────────────────────────────
@@ -133,13 +148,15 @@ function buildSharedResources(
 }
 
 /**
- * `index.ts` passes the store it built; the default keeps argument-less
- * callers (tests) working without duplicating that selection here.
+ * `createApp` passes the store it built and the once-per-boot selection; the
+ * defaults keep argument-less callers (tests) working without duplicating
+ * either here.
  */
 export function getPlugins(
   profileStore: ProfileStore = createProfileStore(),
+  boot: ResolvedBoot = resolveBoot(),
 ): AppPlugin<MCPServer>[] {
-  const entries = composition.appEntries()
+  const { entries } = boot
   const shared = buildSharedResources(entries, profileStore)
   return [
     // Always-on generic widgets (`shell:*`) — no tools, so deliberately
