@@ -31,7 +31,8 @@ so a rendered notes widget proves server, widget bundle, and inspector work.
 Then read the boot log: every warning there is actionable (unknown env var,
 missing Prometheus URL, engine auth problems), and one info line
 (`[acme-mcp] Toolsets — camunda7:read-only (default without OAuth), …`) states
-what each module may do — read-only until you widen it (Step 3).
+what each module may do — read-only until you widen it or set `MCP_OAUTH`
+(Step 3).
 
 ## Step 2 — connect the engine and Prometheus
 
@@ -39,8 +40,9 @@ Edit `.env` (every field is documented inline in `.env.example`):
 
 - `CAMUNDA_BASE_URL` — the engine REST endpoint.
 - `CAMUNDA_ENGINE_ID` — **must match the `ENGINE_ID` the engine stamps onto its
-  metrics.** The mismatch is silent: engine-scoped analytics (BPMN heatmap,
-  engine compare) simply return nothing.
+  metrics.** Analytics reads only the configured engine ids, so the mismatch
+  is silent: every analytics tool returns nothing for that engine and its
+  health reads `unknown`.
 - `CAMUNDA_AUTH_TYPE` — `none | basic | bearer | passthrough`; `basic` needs
   `CAMUNDA_USERNAME`/`CAMUNDA_PASSWORD`, `bearer` needs `CAMUNDA_TOKEN` (both
   enforced at boot); `passthrough` forwards each MCP caller's own bearer token.
@@ -52,14 +54,18 @@ Edit `.env` (every field is documented inline in `.env.example`):
 operaton | camunda7`) and `auth` — overrides the single-engine shorthand
   above. To group engines by environment, either set `environment` per entry
   or write the JSON as a map keyed by environment id
-  (`{"<environment>": [engines…]}`) — pickers and `camunda7_engine` `list`
-  then offer a two-stage environment → engine selection. Engine ids stay
+  (`{"<environment>": [engines…]}`) — pickers and `camunda7_list_engines`
+  then group the engines by environment. Engine ids stay
   globally unique across environments.
 - `PROMETHEUS_URL` — unset defaults to `http://localhost:9090`, which does
   **not** match the playground stack (host port 8460); every analytics query
   then fails. The server warns at boot when unset. A protected Prometheus takes
   `PROMETHEUS_BEARER_TOKEN` or `PROMETHEUS_USERNAME`/`PROMETHEUS_PASSWORD`
   (plus `PROMETHEUS_HEADERS`, a JSON object, e.g. for a tenant id).
+- Analytics reads only the server's configured engines — camunda7's engine ids
+  (a shared Prometheus never exposes other teams' engines). Without camunda7,
+  name them in `ANALYTICS_ENGINE_IDS` (comma-separated `engine_id`s); with
+  neither, every analytics tool refuses.
 - `CAMUNDA_REQUEST_TIMEOUT_MS` / `PROMETHEUS_TIMEOUT_MS` — per-request
   deadlines (default 30000 ms); a hung upstream then fails the tool call with
   a timeout error instead of holding it.
@@ -80,18 +86,21 @@ MCP_ACTIVE_MODULES=camunda7:operations,analytics:standard,notes
 
 - camunda7 supports `read-only | operations | admin`; analytics
   `read-only | standard` (`standard` adds the settings save).
-- **Fail-closed default.** This server installs no OAuth, so a module without
-  a suffix runs `read-only`; an empty (`camunda7:`) or unknown suffix warns and
-  falls back to `read-only`; `admin` (delete/modify, migrations, signals, the
-  external-task worker protocol) is only ever reached by naming it. Check the
-  boot log's `Toolsets —` line after every change.
+- **Fail-closed default.** Without `MCP_OAUTH` a module without a suffix runs
+  `read-only`; with it, its standard toolset (camunda7 `operations`, analytics
+  `standard`). An empty (`camunda7:`) or unknown suffix warns and falls back to
+  `read-only`; `admin` (delete/modify, migrations, signals, the external-task
+  worker protocol) is only ever reached by naming it. Check the boot log's
+  `Toolsets —` line after every change.
 - `camunda7_create_deployment` additionally needs `CAMUNDA_ALLOW_DEPLOYMENTS=true`
   next to `camunda7:admin` — deploying a BPMN/DMN runs code inside the engine
   JVM (JUEL expressions, scripts). Strict `true`/`false` (empty = unset); junk fails the boot.
-- Widening is a security decision: the server listens on all interfaces with
-  no auth of its own, so write toolsets are open to anyone who reaches the
-  port. Behind an authenticating gateway the server still sees no identity —
-  which is exactly why the suffix must stay explicit there.
+- Widening is a security decision: without `MCP_OAUTH` the server listens on
+  all interfaces with no auth, so write toolsets are open to anyone who
+  reaches the port. Behind an authenticating gateway the server still sees no
+  identity — which is exactly why the suffix must stay explicit there, and why
+  settings cannot be saved there: identity reaches the server only through
+  `MCP_OAUTH`.
 - Unknown module names warn and are skipped; a suffix on a module without
   toolsets (e.g. `notes:read-only`) warns and is ignored — that module
   registers all its tools.
@@ -99,21 +108,38 @@ MCP_ACTIVE_MODULES=camunda7:operations,analytics:standard,notes
   register no tools. Module selection is runtime-only; there is no per-module
   bundle.
 
+### OAuth — sign-in and per-user settings
+
+```bash
+MCP_URL=https://mcp.example.com     # the token audience (RFC 8707) — required with OAuth
+MCP_OAUTH={"provider":"keycloak","serverUrl":"https://kc.example.com","realm":"platform"}
+# or: MCP_OAUTH={"provider":"auth0","domain":"tenant.eu.auth0.com"}
+```
+
+`server/src/app.ts` wires it through `oauthFromEnv`
+(`@miragon-ai/widget-shell/server`) — the same helper the stock server uses.
+`/mcp` then answers 401 without a valid bearer token, the default toolsets rise
+to `operations`/`standard`, and every settings save (`camunda7_save_user_profile`,
+`analytics_save_settings`, `camunda7_select_engine`, your own module's save
+tool) persists under the signed-in user. Without `MCP_OAUTH` there is no caller
+identity: settings render their defaults and every save refuses. A bad
+`MCP_OAUTH` (invalid JSON, unknown provider or key, stray `MCP_USE_OAUTH_*`
+vars) fails the boot.
+
 ## Step 4 — persistence
 
 Both stores default to **in-memory** — everything is lost on restart. For real
 deployments point them at directories (mounted volumes in Docker):
 
 ```bash
-MCP_PROFILE_DIR=./.data/profiles       # per-user settings (language, theme, module slices)
-MCP_DASHBOARD_DIR=./.data/dashboards   # saved builder dashboards — only once OAuth is installed (builder is off without it)
-MCP_PROFILE_SESSION_TTL_DAYS=30        # expiry for session-keyed records; 0 disables
+MCP_PROFILE_DIR=./.data/profiles       # per-user settings (language, module slices) — filled under MCP_OAUTH
+MCP_DASHBOARD_DIR=./.data/dashboards   # saved builder dashboards — only under MCP_OAUTH (builder is off without it)
 ```
 
-OAuth, Postgres stores, and Redis session backends are deliberately trimmed
-from this template — the stock server (`apps/mcp-server-camunda7` in the
-[miragon-ai repo](https://github.com/Miragon/miragon-ai)) is the reference for
-all three (README, "Going further").
+Postgres stores are deliberately trimmed from this template — the stock server
+(`apps/mcp-server-camunda7` in the
+[miragon-ai repo](https://github.com/Miragon/miragon-ai)) is the reference
+(README, "Going further").
 
 ## Step 5 — make it yours
 
@@ -130,10 +156,22 @@ then reinstall so the lockfile matches:
 4. `pnpm install` to refresh `pnpm-lock.yaml` (the Docker build uses
    `--frozen-lockfile`)
 
-Branding: swap the color tokens in `server/src/ui/globals.css` (the `:root` and
-`.dark` blocks — light AND dark, they re-theme automatically). Neutrals come
-from the toolkit's shadcn base; only the semantic severity ramp and accent
-colors live here.
+Branding: `server/src/ui/brand.css` imports the toolkit's Miragon theme (the
+default) and has one override block for light and one for dark. Set ROLE
+variables there only — `--primary`, `--primary-hover`, `--link`, `--focus`,
+`--ring`, `--accent`/`--accent-foreground`, `--input`, `--<tone>`/`-soft`/
+`-ink`, radii, shadows, `--font-sans` — in BOTH blocks (the host's dark mode
+matches `:root` too). Miragon blue also sits in `--info`, `--chart-1/-3` and
+`--sidebar-*`; set those too for a single brand. The neutrals (surfaces, the
+text on them, `--border`) are the host's: a host that sends SEP-1865 style
+variables writes them inline on `<html>`, so a value set in brand.css shows
+only where the host sends none — check your colours against a light and a
+dark host surface. Never set the `--cd-*` tokens, never colour a widget with
+palette classes. `server/test/brand.test.ts` measures the role and tone
+pairs (text and each `-foreground` on its fill 4.5:1, edges, dots, icons and
+the focus ring 3:1) in light and dark over the Miragon neutrals; charts, the
+sidebar, radii, shadows and fonts it does not measure. The widgets follow the
+host's theme; there is no theme switch in the app.
 
 ## Step 6 — Docker and production
 
@@ -151,7 +189,10 @@ docker run -p 127.0.0.1:8400:8400 \
   when running behind a proxy or MCP gateway — and, with
   `MCP_ALLOWED_HOSTS`/`MCP_ALLOWED_ORIGINS`, the only non-localhost
   `Host`/`Origin` the server accepts: anything else gets 403 (DNS-rebinding
-  protection), with the message naming the variable to set.
+  protection), with the message naming the variable to set. It is also the
+  origin the views load Geist from (the server's own `/fonts/geist-<version>/`
+  route, declared in every view's CSP `resourceDomains`): behind a gateway,
+  route `/fonts/` to the server too, or the views show the host's font.
 - Federation/aggregation across MCP servers belongs in an external gateway
   (e.g. agentgateway) IN FRONT of this server — this repo builds one
   self-contained server; don't add upstream/proxy mechanics to it.
@@ -212,8 +253,9 @@ needs `MCP_URL` set to the public URL — else every call gets 403.
 pnpm build && pnpm typecheck && pnpm test
 ```
 
-Then a functional pass in the inspector: `camunda7_engine` (engine reachable,
-auth works), one `camunda7_show_*` widget, one analytics tool (Prometheus
+Then a functional pass in the inspector: `camunda7_list_engines` (engines
+configured), one cheap read such as `camunda7_list_process_definitions` (engine
+reachable, auth works), one `camunda7_show_*` widget, one analytics tool (Prometheus
 reachable, `engine_id` matches). A clean boot log — no unknown-var or
 missing-URL warnings — is part of done.
 
@@ -226,5 +268,5 @@ missing-URL warnings — is part of done.
 | Analytics tools return empty results      | `CAMUNDA_ENGINE_ID` doesn't match the engine's metrics `ENGINE_ID`, or `PROMETHEUS_URL` points at the wrong port                                                                                                    |
 | "Unknown environment variable" at boot    | typo, or a var this build doesn't read — `.env.example` is the authoritative list                                                                                                                                   |
 | Widget UI changes don't show up           | the bundle is read once at boot — restart `pnpm dev` at the repo root (it rebuilds modules + bundle on start)                                                                                                       |
-| A tool is missing                         | module not in `MCP_ACTIVE_MODULES`, or its toolset filtered it — without a suffix camunda7/analytics run `read-only` (see the boot log's `Toolsets —` line); deployments also need `CAMUNDA_ALLOW_DEPLOYMENTS=true` |
+| A tool is missing                         | module not in `MCP_ACTIVE_MODULES`, or its toolset filtered it — with no suffix and no `MCP_OAUTH` it is `read-only` (see the boot log's `Toolsets —` line); deployments also need `CAMUNDA_ALLOW_DEPLOYMENTS=true` |
 | Claude Desktop shows no tools at all      | a `"url"` entry in `claude_desktop_config.json` (stdio only — use the `mcp-remote` bridge from Step 7), or the app wasn't restarted                                                                                 |

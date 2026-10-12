@@ -57,8 +57,7 @@ The contract, field by field (see `notesModule`):
   `ACME_`) to the watched set — your module gets the same typo coverage as the
   built-in ones.
 - `toolsets` — leave it out unless you implement Step 5 (the notes module has
-  none). The older `supportsToolsets` flag is deprecated: never set it to
-  `true` — declare `toolsets` instead.
+  none); without it a `<name>:<toolset>` suffix is ignored with a warning.
 - `createPlugin(config, shared)` — validate `config` with your zod schema
   (**this** is where validation lives) and return the `AppPlugin`: construct
   your data source/client once and pass it to both `registerTools` and
@@ -67,14 +66,20 @@ The contract, field by field (see `notesModule`):
   `profileStore?: ProfileSource`) and tolerate their absence.
 - Optional `bootWarnings(env)` — return actionable hints for misconfigured
   deployments (see the analytics module's Prometheus-URL warning).
+- Optional `instructions(config, { authenticated })` — a short snippet the
+  server appends to its MCP `instructions` (the rules that hold for EVERY tool
+  of your module: routing, argument conventions, which tool answers what), so
+  tool descriptions stay one-liners. `config` carries the effective `toolset`;
+  return `undefined` to add nothing.
 
 ## Step 4 — catalogue and tools
 
 - `src/definition.ts` — the module catalogue: `name`, `steps: []`, and one
   entry per widget (start with `widgets: []` if you have none yet).
 - `src/tools.ts` — plain tools **for the model**, registered through
-  `createToolRegistrar(server, store)` (from `@miragon/mcp-toolkit-core/tools`)
-  — the second argument is threaded into every handler as its first parameter.
+  `createToolRegistrar(server, store, { strictInput: true })` (from
+  `@miragon/mcp-toolkit-core/tools`) — the second argument is threaded into
+  every handler as its first parameter; `strictInput` refuses unknown keys.
   Raw `server.tool()` is reserved for the widget path (`widget-tools.ts`).
 
 Tool conventions (they carry the contract, so they are not cosmetic):
@@ -86,7 +91,8 @@ Tool conventions (they carry the contract, so they are not cosmetic):
 - Every input field gets a `.describe()`.
 - Annotations: reads get `{ readOnlyHint: true, idempotentHint: true }`
   (+ `openWorldHint: true` when they talk to an external system); writes drop
-  `readOnlyHint`; irreversible operations add `destructiveHint: true`.
+  `readOnlyHint`; every write states `destructiveHint` explicitly (MCP reads an
+  absent hint as `true`): `true` for irreversible operations, `false` otherwise.
 - Write tools that only flip state return a small `{ success: true, … }`
   object, not the raw (often empty) upstream response.
 
@@ -110,12 +116,13 @@ export const myToolsets = createToolsetVocabulary("<name>", MY_TOOLSETS, "read-o
 - Accept it in your config schema (`toolset: z.string().optional()`) and
   resolve it once in `createPlugin` with `myToolsets.resolve(config.toolset)`.
 - The third argument is your READ-ONLY FLOOR (it must permit no durable
-  write). No suffix on an unauthenticated boot — always, in this template,
-  which installs no OAuth — an empty or unknown suffix (with a warning), and a
-  direct `createPlugin` caller passing no toolset all land there.
-- `authenticatedDefault` is the no-suffix default under OAuth: your standard
-  non-admin toolset. Never make it your widest one — an admin-like toolset
-  must only be reachable by naming it.
+  write). No suffix on a boot without `MCP_OAUTH`, an empty or unknown suffix
+  (with a warning), and a direct `createPlugin` caller passing no toolset all
+  land there.
+- `authenticatedDefault` is the no-suffix default under `MCP_OAUTH` (which
+  `server/src/app.ts` wires through `oauthFromEnv`) — so every OAuth boot
+  that names no suffix runs it: your standard non-admin toolset. Never make it
+  your widest one — an admin-like toolset must only be reachable by naming it.
 - Filter registrar tools by their annotations (read-only ⇔
   `readOnlyHint: true`), and gate durable writes registered outside the
   registrar on `myToolsets.allowsDurableWrites(myToolsets.resolve(config.toolset))`
@@ -161,8 +168,9 @@ typo coverage and boot warnings show up here), and call your tools in the
 inspector at `http://localhost:8400/mcp/inspector` — or headless via the
 mcp-use client/screenshot commands in `CLAUDE.md` → Verification. Also verify
 the selection path: `MCP_ACTIVE_MODULES=<name> pnpm dev` must expose exactly
-your module's tools — its read-only toolset if you declared `toolsets` (the
-boot log's `Toolsets —` line says which).
+your module's tools — if you declared `toolsets`, its read-only floor without
+`MCP_OAUTH` and its `authenticatedDefault` with it (the boot log's
+`Toolsets —` line says which).
 
 ## Anti-patterns
 

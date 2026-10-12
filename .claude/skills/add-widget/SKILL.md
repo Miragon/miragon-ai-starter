@@ -28,19 +28,47 @@ the widget `_meta` contract by name across all composed modules.
 ## Step 1 — the component
 
 Widgets live in `src/widgets/` and receive their payload as a `data` prop.
-Compose them from the shared kit `@miragon-ai/widget-shell/widgets` — never
-re-inline its primitives:
+Compose them from the shared kit `@miragon-ai/widget-shell/widgets` and the
+toolkit `@miragon/mcp-toolkit-ui` — never re-inline their primitives. The
+toolkit's own components, tone maps and `cn` come from the toolkit itself; the
+kit neither forks nor re-exports them:
 
-- `WidgetShell` (container), `WidgetHeader` (icon/title/sub), `Section`
-- Tables: `Th`/`Td`/`TableEmptyState` (rows stay hand-composed `<tr>` + `Td`);
-  KPI strips: `KpiGrid`
+- `WidgetShell` (container) and `Section` from the kit; `WidgetHeader`
+  (title/sub/badge, no icon tile, `as` for the heading level) from the toolkit
+- Tables: `ListTable` (the frame: a named, keyboard-reachable scroll region so
+  a wide table never widens the view; `hideBelow` on a column a narrow view
+  can do without; `sticky` on the last column, the row actions; `sort` on the
+  column the rows are ordered by; `groups` to head adjacent columns) with
+  hand-composed `<tr>` + `Td` rows; `IdCell` for an id column (Geist Mono,
+  shortened, a copy button); `TableEmptyState` instead of an empty frame
+  (`variant="done"` for "nothing left to do"); KPI strips: the toolkit's
+  `KpiGrid`
 - Self-fetch fallback: `QueryFallback` + `TableSkeleton` — a missing `isError`
-  branch means an eternal skeleton
-- Formatting: `formatTimestamp`/`formatDate`/`formatTime`/`formatDuration`/
-  `truncate` — no local date/duration helpers, no `Intl.DateTimeFormat`/
-  `toLocaleDateString` in widget code
-- Long paged lists: `usePagedListView` + `ListTable` + `PagedListFooter` (the
-  feed must accept `firstResult`/`maxResults` and return an honest total)
+  branch means an eternal skeleton. Its `onRetry` is required, and the error
+  speaks for itself: the kit's `describeError` turns an engine or transport
+  failure into what happened and what you can do, the raw text under
+  "Details"; `errorTitle` heads only a failure it cannot classify
+- Writes: confirm with the toast (`useActionFeedback().succeeded/failed`,
+  naming the object), ask first with the kit's `ConfirmDialog` (verb + object
+  on both buttons)
+- Formatting: `formatTimestamp`/`formatDate`/`formatTime` for dates,
+  `formatNumber`/`formatPercent`/`formatPercentPoints`/`formatPeriod`/
+  `formatDuration`/`truncate` for the rest, all in the view's locale; no
+  local helpers, no `Intl.DateTimeFormat`/`toLocaleDateString`/`toFixed` in
+  widget code
+- Status: a tone (`danger`/`warning`/`success`/`info`/`neutral`) via the
+  toolkit's `StatusBadge`/`CountPill`/`KpiCell.tone` or its `TONE_*` maps, next to
+  readable words; colours come from the role variables (override them in
+  `server/src/ui/brand.css`, light and dark, to brand), never palette
+  classes or raw colours in widgets
+- Icons: Lucide through the kit's `Icon` (add `lucide-react` to the module's
+  dependencies at the exact version `server/package.json` pins), never Unicode
+  glyphs or emoji
+- Long paged lists: `usePagedListView` + `ListTable` inside `PagedRows` + the
+  toolkit's `PagedListFooter` (the feed must accept `firstResult`/`maxResults` and return
+  an honest total). A new search keeps the previous rows on screen
+  (`paged.stale`): read counts and filters from the payload shown, not from
+  the request
 
 Self-fetch rule (see `NotesListWidget`): fetch via `useToolQuery` against the
 **`*_data` feed, never the `show_*` tool** (the host would render its result as
@@ -59,7 +87,13 @@ somewhere** (no build error):
    user looking at") — always provide it.
 2. `src/definition.ts` — catalogue entry (`id`, `description`, `requires`,
    `consumes`, `size`). Links 1↔2 are guarded by the module's
-   `widgets/catalogue-sync.test.ts`.
+   `widgets/catalogue-sync.test.ts`. `description` is the model's text; the
+   view builder shows people a `title` and `summary` (`{ en, de }`, or from
+   your catalogs via `createBuilderTexts` from `@miragon-ai/widget-shell/server`)
+   and each top-level `propsSchema` field's `x-display`, else the id;
+   `missingDisplayTexts` from `@miragon-ai/widget-shell/testing` lists what is
+   still unnamed, `displayTextsSentToModel` any text the model would read (a
+   nested field's `x-display` is never stripped, so leave nested fields bare).
 3. `server/src/ui/widget-registry.ts` — your module's spread must reach the
    host bundle map; guarded by `server/test/widget-registry.test.ts`.
 4. `src/tool-names.ts` — a constant for every `show_*`/`*_data` tool referenced
@@ -90,11 +124,13 @@ Model both tools on `modules/mcp-notes/src/widget-tools.ts`:
 - Wrap every handler in `withToolErrors` (all from
   `@miragon-ai/widget-shell/server`).
 - Share the input shape between the pair (one `const <thing>InputShape`), so
-  the widget can re-issue the show tool's arguments against the feed.
+  the widget can re-issue the show tool's arguments against the feed, and
+  declare it as `inputSchema: strictToolInput(<thing>InputShape)` — never a bare
+  `z.object`, which silently drops an unknown key instead of refusing it.
 - A widget-path tool that performs a **durable write** must honor the module's
   toolset itself (the registrar's filter never sees it) — gate it on the
   module's `toolsets` vocabulary, where a missing toolset is the read-only
-  floor (the default here: this server has no OAuth), never "everything"; see
+  floor (the no-suffix default without `MCP_OAUTH`), never "everything"; see
   the add-settings-section skill and
   `node_modules/@miragon-ai/analytics-connector/src/settings-tools.ts`.
 

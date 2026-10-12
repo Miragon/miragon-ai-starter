@@ -5,30 +5,27 @@ import { Client, StreamableHTTPClientTransport } from "@modelcontextprotocol/cli
 import { CAMUNDA7_ADMIN_ONLY_TOOLS } from "@miragon-ai/camunda7-connector"
 import type { RunningServer } from "@miragon-ai/widget-shell/server"
 import { createApp, packageVersion, SERVER_INSTRUCTIONS } from "../src/app.js"
+import { stubNeutralEnv } from "./neutral-env.js"
 
 const FIXTURE_JS = path.join(import.meta.dirname, "fixtures", "mcp-app.js")
 
 /**
  * Boot the REAL composition in-process (`createApp`, exactly what
  * `src/index.ts` runs, with a stand-in widget bundle) and list its tools. The
- * camunda7 module boots against a dead engine URL — tools register fine; only
- * actual calls would fail.
+ * env is neutral (`stubNeutralEnv`): no OAuth, edge override or store
+ * directory from the developer's shell, and a dead engine URL — tools
+ * register fine; only actual calls would fail.
  */
-async function bootAndList(activeModules: string | undefined): Promise<{
+async function bootAndList(
+  activeModules: string | undefined,
+  env: Record<string, string> = {},
+): Promise<{
   app: RunningServer
   client: Client
   origin: string
   tools: ToolEntry[]
 }> {
-  vi.stubEnv("CAMUNDA_BASE_URL", "http://localhost:1")
-  vi.stubEnv("CAMUNDA_ENGINES_FILE", undefined)
-  vi.stubEnv("CAMUNDA_ENGINES_JSON", undefined)
-  vi.stubEnv("CAMUNDA_COCKPIT_URL", undefined)
-  vi.stubEnv("CAMUNDA_ALLOW_DEPLOYMENTS", undefined)
-  vi.stubEnv("MCP_ACTIVE_MODULES", activeModules)
-  // Persistence must stay in-memory regardless of the dev shell's env.
-  vi.stubEnv("MCP_PROFILE_DIR", undefined)
-  vi.stubEnv("MCP_DASHBOARD_DIR", undefined)
+  stubNeutralEnv({ MCP_ACTIVE_MODULES: activeModules, ...env })
 
   const composed = await createApp(process.env, { bundle: { jsPath: FIXTURE_JS } })
   const app = await composed.listen({ port: 0, host: "127.0.0.1" })
@@ -84,7 +81,14 @@ describe("widget wire contract (dual-protocol _meta)", () => {
       version: packageVersion(),
       title: "Acme MCP",
     })
-    expect(client.getInstructions()).toBe(SERVER_INSTRUCTIONS)
+    // Your preamble first, then each active module's own snippet — joined by
+    // the shared boot, so the Miragon modules' routing rules (camunda7's
+    // engine precedence, analytics' engine filter) reach the model with no
+    // code here. A custom module adds one via `instructions` on its definition.
+    const instructions = client.getInstructions() ?? ""
+    expect(instructions.startsWith(`${SERVER_INSTRUCTIONS}\n\n`)).toBe(true)
+    expect(instructions).toContain('one engine is configured ("default"); `engine` may be omitted.')
+    expect(instructions).toContain("analytics (Prometheus metrics of the engines):")
   })
 
   it("registers the custom notes module alongside the Miragon modules", () => {
@@ -219,12 +223,72 @@ describe("widget wire contract (dual-protocol _meta)", () => {
     // mcp-use appends the request-resolved server origin itself since 2.x.
     expect(csp!.connectDomains).toContain(serverOrigin)
   })
+
+  it("admits the server's origin for resources on EVERY view — where the view loads Geist from", async () => {
+    // Without MCP_URL the origin is the one the host read the view from — the
+    // same origin the view resolves its font URLs against.
+    const { resources } = await client.listResources()
+    const views = resources.filter((r) => r.uri.startsWith(VIEW_RESOURCE_URI_PREFIX))
+    expect(views.map((v) => v.uri)).toContain(viewResourceUri("notes_show_notes"))
+    for (const view of views) {
+      expect(await readResourceDomains(client, view.uri), view.uri).toContain(serverOrigin)
+    }
+  })
+})
+
+/** `_meta.ui.csp.resourceDomains` of a view resource as `resources/read` returns it. */
+async function readResourceDomains(client: Client, uri: string): Promise<string[]> {
+  const { contents } = await client.readResource({ uri })
+  const csp = uiBlock((contents[0] as { _meta?: Record<string, unknown> })._meta ?? {}).csp as
+    { resourceDomains?: string[] } | undefined
+  return csp?.resourceDomains ?? []
+}
+
+/**
+ * Behind its public URL (`MCP_URL`) the server declares that origin itself on
+ * every view-bound tool — the framework's, the Miragon modules' and YOUR
+ * modules' alike, listed and read, and in the Apps SDK half
+ * (`openai/widgetCSP`) — so a host admits the font route the views load
+ * Geist from.
+ */
+describe("widget wire contract — the font origin under MCP_URL", () => {
+  const PUBLIC_ORIGIN = "https://mcp.acme.test"
+  let app: RunningServer
+  let client: Client
+  let tools: ToolEntry[]
+
+  beforeAll(async () => {
+    ;({ app, client, tools } = await bootAndList(undefined, { MCP_URL: `${PUBLIC_ORIGIN}/mcp` }))
+  })
+
+  afterAll(async () => {
+    await client?.close()
+    await app?.shutdown()
+    vi.unstubAllEnvs()
+  })
+
+  it("advertises it in resourceDomains on every view resource and to Apps SDK hosts", async () => {
+    const { resources } = await client.listResources()
+    const views = resources.filter((r) => r.uri.startsWith(VIEW_RESOURCE_URI_PREFIX))
+    expect(views.map((v) => v.uri)).toContain(viewResourceUri("notes_show_notes"))
+    for (const view of views) {
+      expect(await readResourceDomains(client, view.uri), view.uri).toContain(PUBLIC_ORIGIN)
+    }
+    const widgetTools = tools.filter((t) => t._meta?.["openai/outputTemplate"] !== undefined)
+    expect(widgetTools.map((t) => t.name)).toContain("notes_show_notes")
+    for (const tool of widgetTools) {
+      expect(tool._meta?.["openai/widgetCSP"], tool.name).toEqual({
+        resource_domains: [PUBLIC_ORIGIN],
+      })
+    }
+  })
 })
 
 /**
- * Toolsets fail closed: this server installs no OAuth, so no selection that
- * does not NAME `camunda7:admin` may list an admin-only tool — not unset, not
- * an empty or unknown suffix — and the dashboard writes stay off.
+ * Toolsets fail closed: without `MCP_OAUTH` (the neutral env clears it) no
+ * selection that does not NAME `camunda7:admin` may list an admin-only tool —
+ * not unset, not an empty or unknown suffix — and the dashboard writes stay
+ * off.
  */
 describe("fail-closed toolsets", () => {
   it.each([undefined, "all", "camunda7:", "camunda7:bogus,analytics:,notes"])(

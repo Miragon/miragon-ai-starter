@@ -6,10 +6,10 @@ allowed-tools: Read, Edit, Write, Glob, Grep, Bash
 
 # add-settings-section — per-user settings for your module
 
-Settings live in ONE profile record per user/session, shared by all modules —
+Settings live in ONE profile record per signed-in user, shared by all modules —
 that is the `profileStore` the server threads into every module via
 `SharedResources`. The record itself is platform-owned and connector-free
-(`language`, `theme`, metadata); your module owns a **slice** under
+(`language`, metadata); your module owns a **slice** under
 `profile.modules.<module>`: the record only transports it, your module owns its
 schema, validates it fail-soft on read, and writes it through its own save
 tool. The store merges per module key, so your save never touches another
@@ -71,11 +71,14 @@ silently split one user's settings across two records:
 
 ```ts
 import {
-  resolveProfileKey, // auth user id > Mcp-Session-Id > anonymous (stdio/tests) > undefined
-  resolveAuthUserId, // stamped as opts.userId on save → record exempt from session-TTL cleanup
+  resolveProfileKey, // OAuth caller (from ctx) > declared local caller "anonymous" > undefined
+  resolveAuthUserId, // the OAuth caller alone — stamped as opts.userId (the record's owner)
   type ProfileSource, // the narrow read/write port a module consumes
 } from "@miragon-ai/widget-shell/server"
 ```
+
+Always pass the handler's `ctx` (`resolveProfileKey(ctx)`): raw `server.tool`
+callbacks get it as their second argument, registrar handlers as their third.
 
 The store arrives via `shared.profileStore` in `createPlugin` — add
 `profileStore?: ProfileSource` to your module's structural shared-resources
@@ -83,9 +86,9 @@ interface (the field is already documented in `modules/mcp-notes/src/module.ts`)
 and treat it as optional. `save` is optional on the port too: no store or no
 `save` means the section is read-only — skip registering the save tool and
 report `canSave: false`.
-`resolveProfileKey` returning `undefined` (HTTP request without a session id)
-means reads fall back to defaults and saves must fail **visibly** — keyless
-clients must never share one record.
+`resolveProfileKey` returning `undefined` (a request without `MCP_OAUTH` — the
+only caller identity) means reads fall back to defaults and saves must fail
+**visibly** — callers without an identity must never share one record.
 
 ## Step 4 — the tool triple (`src/settings-tools.ts`)
 
@@ -98,22 +101,32 @@ wire-contract e2e test asserts by name):
 | `<module>_settings_data` | `...appOnly`                      | `buildDataFeedResult(view)`                          |
 | `<module>_save_settings` | none (plain model-visible tool)   | text summary + `structuredContent` = effective slice |
 
+All three declare `inputSchema: strictToolInput(…)` (`@miragon-ai/widget-shell/server`;
+the save tool `strictToolInput(mySettingsSaveInput.shape)`), so an unknown key is refused
+instead of silently dropped.
+
 Rules the save tool must honor:
 
-- **Merge over the RAW stored slice, not the parsed one** — parsing first would
-  drop fields a newer build wrote and bake defaults into storage:
+- **Save the PATCH alone, never a slice you read first** — `requireProfileKey`
+  and `saveModuleSlice` from `@miragon-ai/widget-shell/server`:
 
   ```ts
-  const rawSlice = (await store.get(key))?.modules?.[MODULE_KEY]
-  const nextSlice = { ...(isObject(rawSlice) ? rawSlice : {}), ...params }
-  await store.save(
+  const key = requireProfileKey(ctx) // throws without an identity
+  const saved = await saveModuleSlice(
+    { get: (k) => store.get(k), save }, // save = store.save, checked before registering
     key,
-    { modules: { [MODULE_KEY]: nextSlice } },
+    MODULE_KEY,
+    params,
     { userId: resolveAuthUserId(ctx) },
   )
   ```
 
-  A missing key throws — a save must fail visibly, never silently no-op.
+  The store merges the patch over the RAW stored slice under its per-key
+  lock, so fields a newer build wrote survive, no defaults are baked into
+  storage, and a concurrent save of another field is never reverted. A slice
+  read before the save would write its stale values back. A field patched to
+  `undefined` clears it. A missing key throws — a save must fail visibly,
+  never silently no-op.
 
 - **Toolset gate** (only if your module declares `toolsets`): the save is a
   durable write registered outside the registrar, so it must gate itself — on
@@ -129,10 +142,13 @@ One self-fetching card composed from `@miragon-ai/widget-shell/widgets` —
 `SettingsCard` / `SettingsField` / `SettingsInput` / `NativeSelect`:
 
 - Self-fetch the `*_data` feed via `useToolQuery`, `{ enabled: !initialData }`.
-- Show errors through `QueryFallback` — a missing `isError` branch is an
-  eternal skeleton.
+- Show errors through `QueryFallback` (its `onRetry` is the query's refetch):
+  a missing `isError` branch is an eternal skeleton.
 - Save via `useToolMutation(SAVE_TOOL, { invalidateKeys: [[…]] })` and re-sync
-  the form baseline from server truth after the refetch.
+  the form baseline from server truth after the refetch. Confirm the save in a
+  toast (`useActionFeedback().succeeded("Settings saved")`, a failure with
+  `.failed(title, error)`): the toolkit's toasts are the polite live region a
+  screen reader hears.
 - Hide Save (render disabled fields) when the view says `canSave: false`.
 
 Register it through the four-link chain (see the add-widget skill). **The
@@ -171,11 +187,11 @@ pnpm build && pnpm typecheck && pnpm test
 Then in the inspector (or headless via the mcp-use client/screenshot commands
 in `CLAUDE.md` → Verification): call `<module>_show_settings`, save a value,
 reload the widget — a value that doesn't survive the reload means the merge or
-the key resolution is wrong. With `toolsets` declared, the default boot is your
-read-only floor (this server has no OAuth), so name the write toolset first,
-e.g. `MCP_ACTIVE_MODULES=<module>:standard,…` in `.env`. Save also needs a
-caller identity: when the section still renders disabled fields, the request
-resolved no profile key — the correct, fail-closed outcome without one.
+the key resolution is wrong. Saving needs a caller identity, i.e. `MCP_OAUTH`
+(see the setup-server skill) and a signed-in inspector/client: without it the
+section renders disabled fields — the correct, fail-closed outcome. With
+`toolsets` declared, a boot without OAuth also puts your module on its
+read-only floor; under OAuth a no-suffix module runs its standard toolset.
 
 ## Anti-patterns
 

@@ -6,15 +6,6 @@ import tailwindcss from "@tailwindcss/vite"
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   resolve: {
-    // Bundle-weight guard (assets are inlined, so unused weight is pure wire
-    // cost): a latin-only cut of the Geist font — the full fontsource entry
-    // ships ~100 KB of unused subsets for an en/de product.
-    alias: [
-      {
-        find: /^@fontsource-variable\/geist$/,
-        replacement: fileURLToPath(new URL("./src/ui/geist-latin.css", import.meta.url)),
-      },
-    ],
     // LOAD-BEARING — never trim this list. The widget packages each resolve
     // their own pnpm instance of the toolkit/React/Query libs; bundling two
     // copies gives each its own React context, `useCallTool()` reads the
@@ -30,6 +21,8 @@ export default defineConfig({
       "@miragon/mcp-toolkit-ui",
       "@miragon/mcp-toolkit-core",
       "@miragon-ai/widget-shell",
+      // The kit's Lucide icons and the toolkit's: one instance.
+      "lucide-react",
     ],
   },
   build: {

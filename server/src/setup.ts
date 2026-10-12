@@ -3,15 +3,19 @@ import { createFileSystemDashboardStore } from "@miragon/mcp-toolkit-core/tools"
 import type { DashboardStore } from "@miragon/mcp-toolkit-core/tools"
 import type { MCPServer } from "mcp-use"
 
-import { camunda7Module, createBpmnXmlFetcher } from "@miragon-ai/camunda7-connector"
+import {
+  camunda7Module,
+  configuredEngineIds,
+  createBpmnXmlFetcher,
+} from "@miragon-ai/camunda7-connector"
 import { analyticsModule, type FetchBpmnXml } from "@miragon-ai/analytics-connector"
 import { notesModule } from "@acme/mcp-notes"
 import {
   composeModules,
   createShellPlugin,
   HTTP_EDGE_ENV_VARS,
+  OAUTH_ENV_VARS,
   profileStoreFromEnv,
-  startProfileSessionCleanup,
   type ComposableModule,
   type ProfileStore,
   type ResolvedBoot,
@@ -25,16 +29,24 @@ import {
  */
 export interface SharedResources {
   /**
-   * One per-session preference store for the whole server (language, theme,
-   * engine and dashboard defaults). Filesystem-backed when `MCP_PROFILE_DIR`
-   * is set, else in-memory.
+   * One per-user preference store for the whole server (language,
+   * engine and dashboard defaults), keyed by the OAuth caller. Filesystem-backed
+   * when `MCP_PROFILE_DIR` is set, else in-memory.
    */
   profileStore: ProfileStore
   /**
-   * BPMN-XML lookup from the camunda7 module, consumed by the analytics
-   * heatmap. Absent when camunda7 is inactive — consumers degrade gracefully.
+   * BPMN-XML lookup from the camunda7 module (on any of its engines),
+   * consumed by the analytics heatmap and the names in the analytics views.
+   * Absent when camunda7 is inactive — consumers degrade gracefully.
    */
   fetchBpmnXml?: FetchBpmnXml
+  /**
+   * The engine ids this server is configured for (camunda7's engines) — the
+   * only engines analytics reads from a Prometheus that may be shared with
+   * other teams. Absent when camunda7 is inactive: analytics then takes
+   * `ANALYTICS_ENGINE_IDS`, else refuses every engine read.
+   */
+  engineIds?: readonly string[]
 }
 
 /**
@@ -54,21 +66,25 @@ export type ModuleDefinition = ComposableModule<SharedResources>
  * the module's `definition` in `test/widget-registry.test.ts` — Tailwind
  * picks up workspace modules automatically via the `modules/` glob in
  * `src/ui/globals.css`.
+ *
+ * Exported for `test/strict-input.e2e.test.ts`, which boots every toolset
+ * each listed module declares — yours included, without a test edit.
  */
-const MODULES: readonly ModuleDefinition[] = [camunda7Module, analyticsModule, notesModule]
+export const MODULES: readonly ModuleDefinition[] = [camunda7Module, analyticsModule, notesModule]
 
 /**
  * App-owned env vars; each module contributes its own slice via
  * `knownEnvVars`, the shared HTTP edge (`MCP_URL`, the Host/Origin
- * allow-lists, the body cap, the metrics token) via `HTTP_EDGE_ENV_VARS`.
- * Every known var feeds the boot-time typo warner.
+ * allow-lists, the body cap, the metrics token) via `HTTP_EDGE_ENV_VARS`, the
+ * shared OAuth wiring (`MCP_OAUTH`, read by `oauthFromEnv` in `app.ts`) via
+ * `OAUTH_ENV_VARS`. Every known var feeds the boot-time typo warner.
  */
 const APP_ENV_VARS = [
   ...HTTP_EDGE_ENV_VARS,
+  ...OAUTH_ENV_VARS,
   "MCP_ACTIVE_MODULES",
   "MCP_DASHBOARD_DIR",
   "MCP_PROFILE_DIR",
-  "MCP_PROFILE_SESSION_TTL_DAYS",
   "MCP_DEBUG_LEVEL",
 ]
 
@@ -84,12 +100,11 @@ export const KNOWN_ENV_VARS = composition.knownEnvVars
 
 /**
  * The module selection as the shared boot resolves it: each module's
- * effective toolset threaded into its config. This server installs no OAuth,
- * so the selection is unauthenticated — every module without an explicit
- * suffix runs its read-only floor (`MCP_ACTIVE_MODULES=camunda7:operations`
- * widens it, for anyone who reaches the port), and the toolkit's dashboard
- * builder stays off. `createApp` passes an OAuth provider to
- * `createComposedServer` only once it really installs one.
+ * effective toolset threaded into its config. `createApp`'s boot is
+ * authenticated exactly when `oauthFromEnv` built a provider from
+ * `MCP_OAUTH`; this argument-less default (tests, `getPlugins()`) is the
+ * unauthenticated one — every module without an explicit suffix on its
+ * read-only floor, the toolkit's dashboard builder off.
  */
 export function resolveBoot(env: NodeJS.ProcessEnv = process.env): ResolvedBoot {
   return composition.resolveBoot(env)
@@ -118,17 +133,6 @@ export function createDashboardStore(
     : undefined
 }
 
-/**
- * Expire SESSION-keyed profile records (`MCP_PROFILE_SESSION_TTL_DAYS` tunes
- * the window, default 30 days, `0` disables).
- */
-export function startSessionCleanup(
-  store: ProfileStore,
-  env: NodeJS.ProcessEnv = process.env,
-): () => void {
-  return startProfileSessionCleanup(store, { env, label: "acme-mcp" })
-}
-
 // ── Plugins ──────────────────────────────────────────────────────────────
 
 /**
@@ -139,12 +143,17 @@ function buildSharedResources(
   entries: AppConfigEntry[],
   profileStore: ProfileStore,
 ): SharedResources {
-  // camunda7's BPMN-XML lookup for modules that need diagram XML without an
-  // engine-SDK dependency (the analytics heatmap). Absent when camunda7 is
-  // inactive — consumers degrade gracefully.
+  // From camunda7, for modules without an engine-SDK dependency: the BPMN-XML
+  // lookup (the analytics heatmap) and the configured engine ids (the only
+  // engines analytics reads). Absent when camunda7 is inactive — the heatmap
+  // degrades, analytics falls back to ANALYTICS_ENGINE_IDS, else fails closed.
   const camunda7Entry = entries.find((e) => e.app === camunda7Module.name)
   if (!camunda7Entry) return { profileStore }
-  return { profileStore, fetchBpmnXml: createBpmnXmlFetcher(camunda7Entry.config) }
+  return {
+    profileStore,
+    fetchBpmnXml: createBpmnXmlFetcher(camunda7Entry.config),
+    engineIds: configuredEngineIds(camunda7Entry.config),
+  }
 }
 
 /**

@@ -51,6 +51,12 @@ external infrastructure.
    (JSON for in-widget self-fetch). The `_show_`/`_data` **naming is
    load-bearing**: `server/test/widget-contract.e2e.test.ts` asserts the widget
    `_meta` contract by name across ALL composed modules, including yours.
+   All three take **strict input** — the registrar with `{ strictInput: true }`,
+   raw `server.tool()` with `strictToolInput(shape)` from
+   `@miragon-ai/widget-shell/server` — so an unknown key is a tool error naming
+   the valid keys, never a silently dropped filter
+   (`server/test/strict-input.e2e.test.ts` probes every tool of every module
+   on every toolset it declares).
 3. **Widgets hang off a four-link chain** (component map → module catalogue →
    server registry → `tool-names.ts`); a missed link is a SILENTLY absent
    widget. Guarded by each module's `catalogue-sync.test.ts` and the server's
@@ -62,9 +68,9 @@ external infrastructure.
    `devDependencies`: upgrade all `@miragon-ai/*` packages together to one
    version. The consumer-shared libraries are ranged `peerDependencies`
    instead — `react`/`react-dom` (`^19.2.0`), `zod` (`^4.4.0`) and
-   `@miragon/mcp-toolkit-*` (`~2.5.0`) — so they dedupe against your app's
+   `@miragon/mcp-toolkit-*` (`~2.8.0`) — so they dedupe against your app's
    copy; keep an exact copy of each in `devDependencies` for local builds.
-   **`mcp-use` stays exactly pinned** even as a peer (`2.7.1`): a duplicate
+   **`mcp-use` stays exactly pinned** even as a peer (`2.7.3`): a duplicate
    `mcp-use` instance breaks the React context and hangs every in-widget query
    on "Loading…" (invariant #4). `@mcp-use/client` (a dev dependency of `server/`) is
    pre-pinned to the newest version mcp-use's optional peer range accepts, so
@@ -80,12 +86,12 @@ external infrastructure.
    directions are guarded by `server/test/env-example.test.ts`; add your
    module's vars there.
 8. **Toolsets fail closed.** A module opts into the `module:toolset` suffix by
-   declaring `toolsets: createToolsetVocabulary(...)` on its definition (the
-   old `supportsToolsets` flag is deprecated); the composition resolves ONE
-   concrete toolset per module per boot and logs it. This server installs no
-   OAuth, so a module without a suffix runs its read-only floor, an
-   empty/unknown suffix falls back to it, and an admin-like toolset is only
-   reachable by naming it. Gate durable writes on the vocabulary
+   declaring `toolsets: createToolsetVocabulary(...)` on its definition (a
+   module without one has no toolsets); the composition resolves ONE
+   concrete toolset per module per boot and logs it. Without `MCP_OAUTH`
+   (`oauthFromEnv` in `server/src/app.ts`) a module without a suffix runs its
+   read-only floor, an empty/unknown suffix falls back to it, and an
+   admin-like toolset is only reachable by naming it. Gate durable writes on the vocabulary
    (`allowsDurableWrites(resolve(toolset))`) — never on a name compare or on
    `toolset === undefined`, both of which fail open. Details: `create-module`
    Step 5.
