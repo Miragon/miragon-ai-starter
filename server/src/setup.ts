@@ -13,6 +13,7 @@ import { notesModule } from "@acme/mcp-notes"
 import {
   composeModules,
   createShellPlugin,
+  frameworkWritesAllowed,
   HTTP_EDGE_ENV_VARS,
   OAUTH_ENV_VARS,
   profileStoreFromEnv,
@@ -85,7 +86,9 @@ const APP_ENV_VARS = [
   "MCP_ACTIVE_MODULES",
   "MCP_DASHBOARD_DIR",
   "MCP_PROFILE_DIR",
-  "MCP_DEBUG_LEVEL",
+  // mcp-use's request-log level, read by mcp-use itself (the boot warns at
+  // debug/trace).
+  "MCP_USE_LOG_LEVEL",
 ]
 
 /** The composition `createApp` hands to the shared boot (`createComposedServer`). */
@@ -168,9 +171,11 @@ export function getPlugins(
   const { entries } = boot
   const shared = buildSharedResources(entries, profileStore)
   return [
-    // Always-on generic widgets (`shell:*`) — no tools, so deliberately
-    // outside the MCP_ACTIVE_MODULES selection.
-    createShellPlugin(),
+    // Always-on shell (`shell:*`): the generic widgets plus the settings page
+    // and the UI language, deliberately outside the MCP_ACTIVE_MODULES
+    // selection. Its language save is a framework write: OAuth and no module
+    // on its read-only floor.
+    createShellPlugin({ profileStore, allowSave: frameworkWritesAllowed(boot) }),
     ...composition.pluginsFor(entries, shared),
   ]
 }

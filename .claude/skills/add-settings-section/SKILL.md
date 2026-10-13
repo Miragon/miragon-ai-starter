@@ -33,10 +33,13 @@ export const mySettingsSchema = z.object({
   someDefault: z.enum(THINGS).default("a").describe("…applied when a call omits `thing`."),
 })
 
-/** Fail-soft: a missing, foreign, or hand-edited slice yields the defaults. */
+/**
+ * Fail-soft per FIELD (`parseModuleSlice` from `@miragon-ai/widget-shell/server`):
+ * a missing or hand-edited slice yields the defaults, and one invalid value keeps
+ * the other saved preferences.
+ */
 export function parseMySettings(modules: Record<string, unknown> | undefined): MySettings {
-  const parsed = mySettingsSchema.safeParse(modules?.[MODULE_KEY] ?? {})
-  return parsed.success ? parsed.data : mySettingsSchema.parse({})
+  return parseModuleSlice(mySettingsSchema, modules?.[MODULE_KEY])
 }
 ```
 
@@ -145,19 +148,22 @@ One self-fetching card composed from `@miragon-ai/widget-shell/widgets` —
 - Show errors through `QueryFallback` (its `onRetry` is the query's refetch):
   a missing `isError` branch is an eternal skeleton.
 - Save via `useToolMutation(SAVE_TOOL, { invalidateKeys: [[…]] })` and re-sync
-  the form baseline from server truth after the refetch. Confirm the save in a
+  the form baseline from server truth after the refetch with
+  `useResetOnChange(stamp, reset)` from `@miragon-ai/widget-shell/widgets` (the
+  saved values as the stamp), never `useEffect(reset, [data])`, which commits
+  the stale baseline once before correcting it. Confirm the save in a
   toast (`useActionFeedback().succeeded("Settings saved")`, a failure with
   `.failed(title, error)`): the toolkit's toasts are the polite live region a
   screen reader hears.
 - Hide Save (render disabled fields) when the view says `canSave: false`.
 
 Register it through the four-link chain (see the add-widget skill). **The
-`<module>:settings` id IS the registration on the cockpit settings page:** the
-settings tab assembles itself from THIS server's widget registry — camunda7's
-own `camunda7:user-profile` panel first, then one row per widget id ending in
-`:settings`, in registration order. Nothing in the published camunda7 package
-lists your module — which is exactly why your section gets a first-class row
-with no edit beyond the normal module wiring. Two consequences:
+`<module>:settings` id IS the registration on the settings page:** the page
+(`shell_show_settings`, also the cockpit's settings tab) assembles itself from
+THIS server's widget registry — the shell's language section first, then one
+row per widget id ending in `:settings`, in registration order. No published
+package lists your module — which is exactly why your section gets a
+first-class row with no edit beyond the normal module wiring. Two consequences:
 
 - Name your section widget `<module>:settings` and it appears on the settings
   tab as soon as your module's widget map is spread into the host registry
@@ -176,7 +182,7 @@ row silently.
 
 Mirror the analytics settings test set in your module: schema fills every
 default from `{}`; save input keeps omitted fields absent; `parseMySettings`
-yields defaults for absent/garbage slices and ignores foreign slices;
+yields defaults for absent/garbage slices, per field, and ignores foreign slices;
 `settingsFor` survives a store outage; a round-trip through a fake store keeps
 the other saved value on a partial save.
 
@@ -204,6 +210,6 @@ read-only floor; under OAuth a no-suffix module runs its standard toolset.
   owner's business.
 - A save tool that ignores the toolset, or a widget showing Save when
   `canSave` is false.
-- Renaming a slice field without a plan for stored records: `safeParse` +
-  defaults silently drops the old value — migrate it in your own read path or
-  accept (and state) the reset.
+- Renaming a slice field without a plan for stored records: `parseModuleSlice`
+  reads an unknown field as absent, so the old value is silently dropped —
+  migrate it in your own read path or accept (and state) the reset.
